@@ -15,7 +15,6 @@ class ChatServer {
             //getting client requests
             while (true) {
 
-
                 // receiving incoming clients
                 Socket client = server.accept();
 
