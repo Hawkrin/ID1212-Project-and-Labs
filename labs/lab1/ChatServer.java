@@ -31,7 +31,8 @@ class ChatServer {
         finally {
             if (server == null)
                 return;
-           
+
+                
             try {
                 server.close();
             } catch (IOException e) {
@@ -90,7 +91,7 @@ class ChatServer {
 
         private void broadcast(String message) {
             for ( ClientHandler client : clients) {
-                System.out.println("hit");
+                System.out.println(message);
                 client.printWriter.println(message);
             }
         }
