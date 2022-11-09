@@ -1,8 +1,8 @@
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketException;
 
-// Server class
 class ChatServer {
     public static void main(String[] args) {
         
@@ -27,8 +27,9 @@ class ChatServer {
                 new Thread(clientSock).start();
             }
         }
-        catch (IOException e) {
-            e.printStackTrace();
+        catch (IOException e ) {
+            //e.printStackTrace();
+            System.out.println("A client has left the server");
         }
         finally {
             if (server != null) {
@@ -36,7 +37,8 @@ class ChatServer {
                     server.close();
                 }
                 catch (IOException e) {
-                    e.printStackTrace();
+                    //e.printStackTrace();
+                    System.out.println("A client has left the server");
                 }
             }
         }
@@ -74,7 +76,7 @@ class ChatServer {
                 }
             }
             catch (IOException e) {
-                e.printStackTrace();
+                System.out.println("A client has left the server");
             }
             finally {
                 try {
@@ -87,7 +89,7 @@ class ChatServer {
                     }
                 }
                 catch (IOException e) {
-                    e.printStackTrace();
+                    System.out.println("A client has left the server");
                 }
             }
         }

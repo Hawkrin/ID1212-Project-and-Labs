@@ -11,7 +11,7 @@ public class ChatClient {
     public static void main(String[] args) throws UnknownHostException, IOException {
         // establish a connection by providing host and port
         // number
-        try (Socket socket = new Socket("localhost", 9091)) {
+        try (Socket socket = new Socket("localhost", 9090)) {
 
             //writes to the server
             PrintWriter writer = new PrintWriter(socket.getOutputStream(), true);
@@ -37,7 +37,7 @@ public class ChatClient {
             scanner.close();
         }
         catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("The server has been shut down");
         }
     }
 }
