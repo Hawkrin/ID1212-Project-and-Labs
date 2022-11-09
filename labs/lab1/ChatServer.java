@@ -48,8 +48,13 @@ class ChatServer {
 
                 String string;
                 while ((string = bufferReader.readLine()) != null) {
-                    if ()
-                    broadcast(string);
+                    if (string.equals("exit")) {
+                        broadcast("has left the server.");
+                        clients.remove(this);
+                        continue;
+                    } else {
+                        broadcast(string);
+                    } 
                 }
             } catch (Exception e) {
                 System.out.println(e.getMessage());

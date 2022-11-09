@@ -20,8 +20,14 @@ public class ChatClient {
             ServerListener clientSock = new ServerListener(socket);            
             new Thread(clientSock).start();
 
+            System.out.println("Connected to server.");
+
             while (!"exit".equalsIgnoreCase(string)) {
                 
+                if (socket.isClosed()) {
+                    System.out.println("Server has gone offline.");
+                    return;
+                } 
                 // reads user ipnut
                 string = scanner.nextLine();
     
@@ -29,7 +35,7 @@ public class ChatClient {
                 writer.println(string);
                 writer.flush();
             }
-            writer.println("has left the chat.");
+            //writer.println("exit");
             scanner.close();
             socket.close();
         }
