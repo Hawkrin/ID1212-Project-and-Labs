@@ -1,3 +1,9 @@
+#Labs
+
+*.class
+
+
+
 # Logs
 logs
 *.log
