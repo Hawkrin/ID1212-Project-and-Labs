@@ -10,20 +10,15 @@ public class ChatClient {
 
     public static void main(String[] args) throws UnknownHostException, IOException {
 
-        PrintWriter printWriter;
-
         try (Socket socket = new Socket("localhost", 9090)) {
-
             //writes to the server
             PrintWriter writer = new PrintWriter(socket.getOutputStream(), true);
 
             Scanner scanner = new Scanner(System.in);
             String string = null;
 
-
             ServerListener clientSock = new ServerListener(socket);            
             new Thread(clientSock).start();
-
 
             while (!"exit".equalsIgnoreCase(string)) {
                 
@@ -34,7 +29,9 @@ public class ChatClient {
                 writer.println(string);
                 writer.flush();
             }
+            writer.println("has left the chat.");
             scanner.close();
+            socket.close();
         }
         catch (IOException e) {
             System.out.println("The server has been shut down");
@@ -63,7 +60,7 @@ public class ChatClient {
                 String string;
 
                 while ((string = bufferReader.readLine()) != null) {
-                    System.out.printf(" Sent from the client: %s\n",string);
+                    System.out.printf(string + "\n");
                 }
             }
             catch (IOException e) {

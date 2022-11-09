@@ -23,21 +23,8 @@ class ChatServer {
                 clients.add(clientSock);              
                 new Thread(clientSock).start();
             }
-        }
-
-        catch (IOException e ) {
-            System.out.println("A client has left the server");
-        }
-        finally {
-            if (server == null)
-                return;
-
-                
-            try {
-                server.close();
-            } catch (IOException e) {
-                System.out.println("A client has left the server");
-            } 
+        } catch (Exception e ) {
+            System.out.println(e.getMessage());
         }
     }
 
@@ -48,51 +35,33 @@ class ChatServer {
         
         private PrintWriter printWriter;
         private BufferedReader bufferReader;
-        // Constructor
+        
         public ClientHandler(Socket socket, ArrayList<ClientHandler> clients) {
             this.clientSocket = socket;
             this.clients = clients;
         }
 
         public void run() {
-
             try { 
-                // get the outputstream  of client
-                printWriter = new PrintWriter(clientSocket.getOutputStream(), true);
-
-                // get the inputstream of client
+                printWriter = new PrintWriter(clientSocket.getOutputStream(), true); 
                 bufferReader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
                 String string;
-
                 while ((string = bufferReader.readLine()) != null) {
-                    System.out.printf(" Sent from the client: %s\n",string);
+                    if ()
                     broadcast(string);
                 }
-            }
-            catch (IOException e) {
-                System.out.println("A client has left the server");
-            }
-            finally {
-                try {
-                    if (printWriter != null) {
-                        printWriter.close();
-                    }
-                    if (bufferReader != null) {
-                        bufferReader.close();
-                        clientSocket.close();
-                    }
-                }
-                catch (IOException e) {
-                    System.out.println("A client has left the server");
-                }
-            }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            } 
         }
 
         private void broadcast(String message) {
             for ( ClientHandler client : clients) {
-                System.out.println(message);
-                client.printWriter.println(message);
+                if (this == client) {
+                    continue;
+                } 
+                client.printWriter.println(client.clientSocket.getInetAddress() + ": " + message); 
             }
         }
     }
