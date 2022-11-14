@@ -1,3 +1,4 @@
+package test;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -25,6 +26,7 @@ public class Test2 {
     public void handle(HttpExchange t) throws IOException {
       String response = "Hello";
       t.sendResponseHeaders(200, response.length());
+      
       OutputStream os = t.getResponseBody();
       os.write(response.getBytes());
       
