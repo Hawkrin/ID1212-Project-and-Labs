@@ -74,8 +74,6 @@ public class extra {
             sum += result;
         } 
 
-        System.out.println(sum / 100);
-
-            
+        System.out.println(sum / 100);   
     } 
 }
