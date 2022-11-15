@@ -1,3 +1,4 @@
+package v1;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -14,7 +15,6 @@ public class Server {
             ServerSocket server = new ServerSocket(port);
             System.out.println("Server is starting up, listening on port: " + port + ".");
             System.out.println("Access server at http://localhost:" + port);
-
             while (true) {
                 client = server.accept();
                 new Controller(client, models).start();

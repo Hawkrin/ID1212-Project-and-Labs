@@ -1,3 +1,4 @@
+package v1;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -29,7 +30,7 @@ public class Controller extends Thread {
                 if (line.equals("")) {
                     break; 
                 }
-           }
+            }
 
             String test = Request.get(0).split(" ")[1];
             if (!test.equals("/")) { System.out.print("Block: " + test); return; }   
