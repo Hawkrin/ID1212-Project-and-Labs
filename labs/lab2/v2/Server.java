@@ -20,7 +20,6 @@ public class Server {
             System.out.println("Access server at http://localhost:" + port);
 
             while (true) {
-                System.out.println("Size of models: " + models.size());
                 //Listening for client to access the server.
                 client = server.accept();
 

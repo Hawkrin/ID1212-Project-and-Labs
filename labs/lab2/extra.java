@@ -49,7 +49,6 @@ public class extra {
 
             mid = (low + high) / 2;
 
-
             request = HttpRequest.newBuilder()
                 .uri(URI.create("http://localhost:3001/?guess=" + mid))
                 .GET()
