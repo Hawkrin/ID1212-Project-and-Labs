@@ -11,7 +11,7 @@ public class main {
 
         Imap imap = new Imap(host, port);
         // imap.start_ssl();
-        imap.start(); 
+        imap.start_smtp(); 
 
     }
 }

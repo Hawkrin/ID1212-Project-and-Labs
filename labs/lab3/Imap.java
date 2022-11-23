@@ -35,7 +35,7 @@ public class Imap {
         this.sc = new Scanner(System.in);
     }
 
-    public void start() throws UnknownHostException, IOException {
+    public void start_smtp() throws UnknownHostException, IOException {
         System.out.println("Trying to connect to: " + host);
 
         this._socket = new Socket(this.host, this.port);
@@ -43,11 +43,11 @@ public class Imap {
         this.reader = new BufferedReader(new InputStreamReader(_socket.getInputStream(), "utf-8"));
         this.writer = new PrintWriter(new OutputStreamWriter(_socket.getOutputStream(), StandardCharsets.UTF_8), true);
 
-        this.read();
+        this.read_smtp();
         this.write_raw("EHLO harrylaz.kth.se");
-        this.read();
+        this.read_smtp();
         this.write_raw("STARTTLS");
-        this.read();
+        this.read_smtp();
 
         
         SSLSocketFactory _factory = (SSLSocketFactory) SSLSocketFactory.getDefault();
@@ -57,32 +57,32 @@ public class Imap {
         this.writer = new PrintWriter(new OutputStreamWriter(_sslSocket.getOutputStream(), StandardCharsets.UTF_8), true);
 
         this.write_raw("EHLO harrylaz.kth.se");
-        this.read();
+        this.read_smtp();
 
         this.write_raw("AUTH LOGIN");
-        this.read();
+        this.read_smtp();
 
-        this.write_raw(Base64.getEncoder().encodeToString("harrylaz".getBytes()));
-        this.read();
+        this.write_raw(Base64.getEncoder().encodeToString(creds.username.getBytes()));
+        this.read_smtp();
 
-        this.write_raw(Base64.getEncoder().encodeToString("Rj95e7vs!".getBytes()));
-        this.read();
+        this.write_raw(Base64.getEncoder().encodeToString(creds.password.getBytes()));
+        this.read_smtp();
 
         this.write_raw("MAIL FROM: <harrylaz@kth.se>");
-        this.read();
+        this.read_smtp();
 
         this.write_raw("RCPT TO: <malcolml@kth.se>");
-        this.read();
+        this.read_smtp();
 
         this.write_raw("DATA");
-        this.read();
+        this.read_smtp();
 
         this.write_raw("Hello Malcolm! Detta är Harry om det inte var tydligt nog.");
         this.write_raw(".");
-        this.read();
+        this.read_smtp();
 
         this.write_raw("QUIT");
-        this.read();
+        this.read_smtp();
     }
 
 
@@ -133,7 +133,7 @@ public class Imap {
 
         if(command.equals("flush")) {
             this.writer.flush();
-            this.read();
+            this.read_smtp();
             return;
         }
 
@@ -141,7 +141,7 @@ public class Imap {
 
         if(command.equals(".")) { 
             this.writer.flush();
-            this.read();
+            this.read_smtp();
         }
     }
 
@@ -151,7 +151,7 @@ public class Imap {
         this.writer.flush();
     }
 
-    private void read() throws IOException {
+    private void read_smtp() throws IOException {
         while(true) {
             String response = this.reader.readLine();
             System.out.println("S: " + response);
