@@ -8,19 +8,19 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
-
+import java.util.Scanner;
 import javax.net.ssl.SSLServerSocket;
 import javax.net.ssl.SSLSocket;
 import javax.net.ssl.SSLSocketFactory;
 
 public class Imap {
-   
+
     String host;
     int port;    
 
     SSLSocket socket;
     SSLSocketFactory factory;
-
+    Scanner sc;
     Socket _socket;
 
     BufferedReader reader;
@@ -30,14 +30,27 @@ public class Imap {
     public Imap(String host, int port) throws UnknownHostException, IOException {
         this.host = host;
         this.port = port;
+        this.sc = new Scanner(System.in);
     }
 
     public void start() throws UnknownHostException, IOException {
         System.out.println("Trying to connect to: " + host);
-        this._socket = new Socket(host, port);
+
+        this._socket = new Socket(this.host, this.port);
 
         this.reader = new BufferedReader(new InputStreamReader(_socket.getInputStream()));
         this.writer = new PrintWriter(new OutputStreamWriter(_socket.getOutputStream()), false);
+
+        this.write_raw("EHLO " + InetAddress.getLocalHost().getHostAddress());
+        this.write_raw("STARTTLS");
+
+        SSLSocketFactory _factory = (SSLSocketFactory) SSLSocketFactory.getDefault();
+        SSLSocket _sslSocket = (SSLSocket) _factory.createSocket(_socket, this.host, this.port, true);
+
+        this.reader = new BufferedReader(new InputStreamReader(_sslSocket.getInputStream()));
+        this.writer = new PrintWriter(new OutputStreamWriter(_sslSocket.getOutputStream()), false);
+
+        _sslSocket.startHandshake();
 
         System.out.println("Connected to: " + host);
 
@@ -60,27 +73,69 @@ public class Imap {
         System.out.println("Connected to: " + host);
 
         //Reading server greeting.
-        this.read();
+        this.read_ssl();
 
     }
 
-    public void send(String command) throws IOException {
+    public void send_ssl() throws IOException {
+        String command = this.reader.readLine();
         String tag = "a" + this.tagNumber++;
         String request = tag + " " + command;
 
         System.out.println("C: " + request);
 
-        this.writer.print(command + "\r\n");
+        this.writer.print(request + "\r\n");
         this.writer.flush();
 
-        while (!read().startsWith(tag)) {}
+        while (!read_ssl().startsWith(tag)) {}
     }
 
-    public String read() throws IOException { 
+    private String read_ssl() throws IOException { 
         String response = this.reader.readLine();
 
         System.out.println("S: " + response);
 
         return response;
     } 
+
+    public void send() throws IOException {
+
+        System.out.print("C: ");
+        String command = this.sc.nextLine();
+
+        if(command.equals("flush")) {
+            this.writer.flush();
+            this.read();
+            return;
+        }
+
+        this.writer.print(command + "\r\n");
+
+        if(command.equals(".")) { 
+            this.writer.flush();
+            this.read();
+        }
+    }
+
+    private void write_raw(String command) {
+        this.writer.print(command + "\r\n");
+        this.writer.flush();
+    }
+
+    private void read() throws IOException {
+        while(true) {
+            String response = this.reader.readLine();
+            System.out.println("S: " + response);
+            if (
+                Character.isDigit(response.charAt(0)) &&
+                Character.isDigit(response.charAt(1)) &&
+                Character.isDigit(response.charAt(2)) &&
+                Character.isWhitespace(response.charAt(3))
+            ) { 
+                System.out.println("break");
+                break; 
+            }
+
+        }
+    }
 }
