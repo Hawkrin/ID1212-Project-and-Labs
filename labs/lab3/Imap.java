@@ -8,6 +8,8 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 import java.util.Scanner;
 import javax.net.ssl.SSLServerSocket;
 import javax.net.ssl.SSLSocket;
@@ -38,22 +40,48 @@ public class Imap {
 
         this._socket = new Socket(this.host, this.port);
 
-        this.reader = new BufferedReader(new InputStreamReader(_socket.getInputStream()));
-        this.writer = new PrintWriter(new OutputStreamWriter(_socket.getOutputStream()), false);
+        this.reader = new BufferedReader(new InputStreamReader(_socket.getInputStream(), "utf-8"));
+        this.writer = new PrintWriter(new OutputStreamWriter(_socket.getOutputStream(), StandardCharsets.UTF_8), true);
 
-        this.write_raw("EHLO " + InetAddress.getLocalHost().getHostAddress());
+        this.read();
+        this.write_raw("EHLO harrylaz.kth.se");
+        this.read();
         this.write_raw("STARTTLS");
+        this.read();
 
+        
         SSLSocketFactory _factory = (SSLSocketFactory) SSLSocketFactory.getDefault();
-        SSLSocket _sslSocket = (SSLSocket) _factory.createSocket(_socket, this.host, this.port, true);
+        SSLSocket _sslSocket = (SSLSocket) _factory.createSocket(this._socket, this.host, this.port, false);
 
         this.reader = new BufferedReader(new InputStreamReader(_sslSocket.getInputStream()));
-        this.writer = new PrintWriter(new OutputStreamWriter(_sslSocket.getOutputStream()), false);
+        this.writer = new PrintWriter(new OutputStreamWriter(_sslSocket.getOutputStream(), StandardCharsets.UTF_8), true);
 
-        _sslSocket.startHandshake();
+        this.write_raw("EHLO harrylaz.kth.se");
+        this.read();
 
-        System.out.println("Connected to: " + host);
+        this.write_raw("AUTH LOGIN");
+        this.read();
 
+        this.write_raw(Base64.getEncoder().encodeToString("harrylaz".getBytes()));
+        this.read();
+
+        this.write_raw(Base64.getEncoder().encodeToString("Rj95e7vs!".getBytes()));
+        this.read();
+
+        this.write_raw("MAIL FROM: <harrylaz@kth.se>");
+        this.read();
+
+        this.write_raw("RCPT TO: <malcolml@kth.se>");
+        this.read();
+
+        this.write_raw("DATA");
+        this.read();
+
+        this.write_raw("Hello Malcolm! Detta är Harry om det inte var tydligt nog.");
+        this.write_raw(".");
+        this.read();
+
+        this.write_raw("QUIT");
         this.read();
     }
 
@@ -118,6 +146,7 @@ public class Imap {
     }
 
     private void write_raw(String command) {
+        System.out.println("C: " + command);
         this.writer.print(command + "\r\n");
         this.writer.flush();
     }
@@ -132,7 +161,6 @@ public class Imap {
                 Character.isDigit(response.charAt(2)) &&
                 Character.isWhitespace(response.charAt(3))
             ) { 
-                System.out.println("break");
                 break; 
             }
 
