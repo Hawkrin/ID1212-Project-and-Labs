@@ -62,10 +62,10 @@ public class Imap {
         this.write_raw("AUTH LOGIN");
         this.read_smtp();
 
-        this.write_raw(Base64.getEncoder().encodeToString(creds.username.getBytes()));
+        this.write_raw(Base64.getEncoder().encodeToString(creds.MAIL_USERNAME.getBytes()));
         this.read_smtp();
 
-        this.write_raw(Base64.getEncoder().encodeToString(creds.password.getBytes()));
+        this.write_raw(Base64.getEncoder().encodeToString(creds.MAIL_PASSWORD.getBytes()));
         this.read_smtp();
 
         this.write_raw("MAIL FROM: <harrylaz@kth.se>");

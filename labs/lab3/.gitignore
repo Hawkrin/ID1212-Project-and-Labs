@@ -1,1 +1,7 @@
 creds.java
+
+lab3.cer
+# keytool -exportcert -keystore ID1212-Project-and-Labs\labs\lab3\extra\lab3.pfx -storetype pkcs12 -storepass -alias lab3 -file lab3.cer
+
+lab3.pfx
+# keytool -genkey -keyalg RSA -keystore ID1212-Project-and-Labs\labs\lab3\extra\lab3.pfx -storetype PKCS12 -storepass -validity 365 -alias lab3
