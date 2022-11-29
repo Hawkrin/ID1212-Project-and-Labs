@@ -5,20 +5,23 @@ const app = express()
 app.set('view engine', 'ejs')
 app.listen(3000)
 
+//makes css files public
+app.use(express.static('/views/styles'))
+
 app.get('/', (req, res) => {
-    res.send("<p>HELLO</p> ")
+    res.render('home')
 })
 
 app.get('/about', (req, res) => {
-    res.send("<p>HELLO</p> ")
+    res.render('about')
 })
 
-app.get('/posts/create', (req, res) => {
-    res.send("<p>HELLO</p> ")
+app.get('/create', (req, res) => {
+    res.render('create')
 })
 
 app.use((req, res) => {
-    res.status(404).send("<p>ERROR</p>")
+    res.status(404).render('404')
 })
 
 
