@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context docBase="C:\Users\Harry\Desktop\KTH\ID1212-Project-and-Labs\labs\lab4\L4\build\web" path="/L4">
+  <Resource auth="Container" driverClassName="org.apache.derby.jdbc.ClientDriver" maxActive="50" maxIdle="30" maxWait="10000" name="jdbc/derby" password="harry" type="javax.sql.DataSource" url="jdbc:derby://localhost:1527/test" username="harry"/>
+</Context>
