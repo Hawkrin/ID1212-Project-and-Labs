@@ -1,52 +1,74 @@
 <div id="navContainer">
-    <nav id="nav">
-        <ul class="navOptions">
-            <li><a href="/">Home</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/forumpage">Threads</a></li>
-            <li><a href="/account">Account</a></li>
-        </ul>
-    </nav>
-    <button id="logoutButton">Sign Out</button>
+    <div id="leftHeaderContainer">
+        <nav id="nav">
+            <ul class="navOptions">
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/forumpage">Threads</a></li>
+                <li><a href="/account">Account</a></li>
+            </ul>   
+        </nav>
+    </div>
+    <div id="middleHeaderContainer">
+        <span id="headerTitle">Discussion Forum</span>
+    </div>
+    <div id="leftHeaderContainer">
+        <button id="logoutButton">Sign Out</button>
+    </div>   
 </div>
 <style>
     #navContainer {
         background-color: #f2f2f2;
         border: 1px solid #ccc;
-        display: flex;
         width: 100%;
-        float: left;
         margin: 0 0 1em 0;
         padding: 0;
         display: flex;
-        justify-content: flex-start;
+        justify-content: space-between;
+        position: relative;
     }
-    #nav {
+    #leftHeaderContainer{
+        display: flex;
+        justify-content: flex-start;
+        width: 17%;
     }
     #nav ul {
         list-style: none;
-        width: 800px;
         margin: 0 auto;
-        padding: 0; }
+        padding: 0; 
+    }
     #nav li {
-        float: left; }
+        float: left; 
+    }
     #nav li a {
         display: block;
         padding: 8px 15px;
         text-decoration: none;
         font-weight: bold;
         color: #069;
-        border-right: 1px solid #ccc; }
+        border-right: 1px solid #ccc; 
+    }
     #nav li:first-child a {
-        border-left: 1px solid #ccc; }
+        border-left: 1px solid #ccc; 
+    }
     #nav li a:hover {
         color: #c00;
-        background-color: #fff; }
-    #logoutButton {
-        width: 5%;
-        height: 20%;
-        margin-left: 52%;
-        margin-top: 0.4%;
+        background-color: #fff; 
     }
+    #middleHeaderContainer {
+        display: flex;
+        justify-content: center;
+    }
+    #headerTitle {
+        color: #333333;
+        font-family: 'Bitter', serif; 
+        font-size: x-large;
+        font-weight: normal; 
+    }
+    #leftHeaderContainer {
+        display: flex;
+        justify-content: flex-end;
+    }
+
 </style>
 
