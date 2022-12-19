@@ -7,8 +7,8 @@ const bcrypt = require("bcrypt")
 const userSchema = new mongoose.Schema({
     username: {
         type: String,
+        unique: true,
         required: true,
-        unique: true
     },
 
     password: {
@@ -20,9 +20,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
         lowercase: true,
-        unique: true
+        unique: true,
     }
 })
+
 
 userSchema.pre("save", function (next) {
     //User instance
@@ -47,6 +48,20 @@ userSchema.pre("save", function (next) {
 
 userSchema.statics.userAlreadyExists = function (username, email) {
     return this.findOne({ $or: [{ username }, { email }] })
+}
+
+userSchema.statics.loginUser = function(email, password) {
+    this.findOne({ email })
+        .then((user) => {
+            if (!user) { return reject("Email does not exists."); }
+
+            bcrypt.compare(password, user.password, (error, result) => {
+                if (error) { return reject(error); }
+                if (result) {
+                    return resolve(user);
+                }
+            })
+        })
 }
 
 module.exports = mongoose.model("user", userSchema)

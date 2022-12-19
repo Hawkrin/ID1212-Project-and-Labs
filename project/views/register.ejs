@@ -6,24 +6,38 @@
     <title>Login</title>
 </head>
 <body>
-    <form id="signInBox">
+    <form id="signInBox" method="post">
         <div id="signin">
             <h2>Sign Up</h2>
+            <% if(errors.errors[0]) { %> <p><% JSON.stringify(errors.errors[0].msg) %></p> <% }%>
+            <label id="username">
+                <input 
+                    type="text"
+                    name="username"
+                    placeholder='Username'
+                />
+            </label>
+     
             <label id="email">
                 <input 
-                    type="tesxt"
+                    type="text"
+                    name="email"
                     placeholder='Email'
                 />
             </label>
+   
             <label id="password">
                 <input 
                     type="password"
+                    name="password"
                     placeholder='Password' 
                 />
             </label>
-            <label id="confirmPassword">
+   
+            <label id="confirmpassword">
                 <input 
                     type="password"
+                    name="confirmpassword
                     placeholder='Confirm password' 
                 />
             </label>
@@ -43,8 +57,8 @@
         padding-top: 180px;
     }
     #signin{
-        padding-top: 80px;
-        height: 300px;
+        padding-top: 40px;
+        height: 400px;
         width: 400px;
         display: flex; 
         flex-direction: column;
@@ -124,6 +138,20 @@
         background-color: rgb(233, 233, 233);  
     }
     #confirmPassword input:focus {
+        outline: none;
+    }
+    #username {
+        display: flex;
+        align-items: center;
+        background-color: rgb(233, 233, 233); 
+        border-radius: 5px;
+        padding: 5px;
+    }
+    #username input {
+        border: none;
+        background-color: rgb(233, 233, 233);  
+    }
+    #username input:focus {
         outline: none;
     }
 </style>
