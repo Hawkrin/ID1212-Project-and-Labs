@@ -1,6 +1,8 @@
 const { Router } = require("express");
 const _ = require("lodash");
+const { fullUrl } = require("../util/url");
 const { check, validationResult } = require('express-validator/check');
+const { formErrorFormater } = require("../util/errorFormater");
 
 const router = Router();
 
@@ -17,8 +19,11 @@ router
     })
 
     //Register routes
-    .get("/register", (req, res, next) => {
-        res.render('register');
+    .get("/register", (req, res) => {
+        return res.render('register', {
+            error: req.flash("error"), 
+            form_error: req.flash("form-error")
+        });
     })
     .post("/register", 
     
@@ -44,26 +49,22 @@ router
     ],
     
     
-    (req, res, next) => {
+    (req, res) => {
         const {username, password, confirmpassword, email} = _.pick(req.body, ["username", "password", "confirmpassword", "email"]);
-
-        
+ 
         const errors = validationResult(req);
         if (errors) {
-            return res.json(errors);
-            //return res.render("register", {errors});
+            req.flash("form-error", formErrorFormater(errors));
+            return res.redirect(fullUrl(req));
         }
-
-
+        
         register(username, password, confirmpassword, email)
             .then((user) => {
                 return res.json(user);
             })
             .catch((error) => {
-                return res.json(error);
-                //res.render("register", {
-                //    validation: error
-                //});
+                req.flash("error", error);
+                return res.redirect(fullUrl(req));
             })
     })
 

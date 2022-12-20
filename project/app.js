@@ -1,11 +1,14 @@
 require("dotenv").config()
 
 const _= require('lodash');
+const flash = require("connect-flash");
 const express = require('express');
 const http = require("http");
+const session = require("express-session");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
 
 //Database connection
 require("./db").connect();
@@ -13,7 +16,15 @@ require("./db").connect();
 //App configuration
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+
 app.set('view engine', 'ejs');
+
+app.use(session({
+  secret: 'keyboard cat',
+  saveUninitialized: true,
+  resave: true
+}))
+app.use(flash());
 
 //Routes
 app.use("/auth", require("./routes/auth.routes"));

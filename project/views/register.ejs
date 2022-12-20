@@ -9,15 +9,16 @@
     <form id="signInBox" method="post">
         <div id="signin">
             <h2>Sign Up</h2>
-            <% if(errors.errors[0]) { %> <p><% JSON.stringify(errors.errors[0].msg) %></p> <% }%>
+             
             <label id="username">
                 <input 
                     type="text"
                     name="username"
                     placeholder='Username'
                 />
-            </label>
-     
+            </label> 
+            <p>Error: <%=form_error[0].username %> </p>
+
             <label id="email">
                 <input 
                     type="text"
