@@ -9,7 +9,7 @@
     <form id="signInBox" method="post">
         <div id="signin">
             <h2>Sign Up</h2>
-            <% if(errors.errors[0]) { %> <p><% JSON.stringify(errors.errors[0].msg) %></p> <% }%>
+            <% if({}.errors[0]) { %> <p>HEY </p> <% } %>
             <label id="username">
                 <input 
                     type="text"
@@ -17,7 +17,6 @@
                     placeholder='Username'
                 />
             </label>
-     
             <label id="email">
                 <input 
                     type="text"
@@ -25,7 +24,6 @@
                     placeholder='Email'
                 />
             </label>
-   
             <label id="password">
                 <input 
                     type="password"
@@ -33,11 +31,10 @@
                     placeholder='Password' 
                 />
             </label>
-   
             <label id="confirmpassword">
                 <input 
                     type="password"
-                    name="confirmpassword
+                    name="confirmpassword"
                     placeholder='Confirm password' 
                 />
             </label>
