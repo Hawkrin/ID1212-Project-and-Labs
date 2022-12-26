@@ -95,6 +95,7 @@ router
                 return res.json(user);
             })
             .catch((error) => {
+                console.log(error);
                 req.flash("error", error);
                 return res.redirect(fullUrl(req));
             })
