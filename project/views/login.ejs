@@ -11,12 +11,15 @@
             <h2>Sign In</h2>
             <!-- Error for email -->
             <p style="font-size: xx-small; padding-top: -10px;"><%= form_error[0] %></p>
+            <%console.log(form_error)%>
+            <%console.log(error)%>
             <label id="email">
                 <input 
                     type="text"
                     placeholder='Email'
                 />
             </label>
+            <!-- Error for password -->
             <p style="font-size: xx-small;"><%= form_error[0] %></p>
             <label id="password">
                 <input 

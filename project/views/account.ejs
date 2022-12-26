@@ -1,13 +1,51 @@
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
 
-    <%- include('./partials/navbar.ejs') %>
+        <%- include('./partials/navbar.ejs') %>
+        <div id="accountBox">
+            <div id="account">
+                <div id="imageBox">
+                    <img 
+                        src="../images/generic-male-avatar-rectangular.png"
+                        alt="accountImage"
+                        height="300px" 
+                        width="300px"
+                    >
+                </div>
+            </div>
+        </div>
 
-</body>
+    </body>
+    <style>
+        #accountBox{
+            display: flex; 
+            flex-direction: column;
+            align-items: center;
+            padding-top: 100px;
+        }
+        #account{
+            padding-top: 80px;
+            height: 500px;
+            width: 1000px;
+            display: flex; 
+            flex-direction: column;
+            align-items: center; 
+            background: f2f2f2;
+            border-radius: 10px;
+            box-shadow: 5px 20px 50px #000;
+            font-family: "Papyrus", Fantasy;
+        }
+        #imageBox {
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            align-content: flex-start;
+        }
+    </style>
 </html>

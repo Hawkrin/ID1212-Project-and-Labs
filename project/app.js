@@ -28,6 +28,11 @@ app.use(flash());
 
 //Routes
 app.use("/auth", require("./routes/auth.routes"));
+app.use("",  require("./routes/home.routes"));
+app.use("",  require("./routes/posts.routes"));
+app.use("",  require("./routes/accountPage.routes"));
+app.use("",  require("./routes/aboutPage.routes"));
+
 
 app.use((req, res) => {
   res.status(404).render('404')

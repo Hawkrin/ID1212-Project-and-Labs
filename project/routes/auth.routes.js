@@ -28,7 +28,7 @@ router
     ],
 
     (req, res) => {
-        const {password, email} = _.pick(req.body, ["password", "email"]);
+        const {email, password} = _.pick(req.body, ["password", "email"]);
 
         //Form errors.
         const errors = validationResult(req);
@@ -77,8 +77,7 @@ router
                 }
             })
     ],
-    
-    
+
     (req, res) => {
         const {username, password, confirmpassword, email} = _.pick(req.body, ["username", "password", "confirmpassword", "email"]);
 
@@ -99,6 +98,7 @@ router
                 req.flash("error", error);
                 return res.redirect(fullUrl(req));
             })
+        res.redirect('/home')
     })
 
 module.exports = router;

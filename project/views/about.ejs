@@ -1,14 +1,49 @@
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ABOUT</title>
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ABOUT</title>
+    </head>
+    <body>
 
-    <%- include('./partials/navbar.ejs') %>
+        <%- include('./partials/navbar.ejs') %>
 
-    <h5>ABOUT</h5>
-</body>
+        <div id="aboutBox">
+            <div id="about">
+                <h3>ABOUT</h3>
+                <p>This is a ordinary forum where you can post your ideas, as well as writing comments
+                    on other peoples posts. All topics are welcome, as long as they don't offend any
+                    groups of people. Have fun!
+                </p>
+                <br>
+                <h4>Terms of Use</h4>
+                <p>Be respectful and treat others the same way that you want to be treated.</p>
+                <p>Try to use a mature language so no user gets offended.</p>
+                <p>Don't spam or you will be banned.</p>
+
+            </div>
+        </div>
+
+    </body>
+    <style>
+        #aboutBox{
+            display: flex; 
+            flex-direction: column;
+            align-items: center;
+            padding-top: 100px;
+        }
+        #about{
+            padding-top: 80px;
+            height: 500px;
+            width: 700px;
+            display: flex; 
+            flex-direction: column;
+            align-items: center; 
+            background: f2f2f2;
+            border-radius: 10px;
+            box-shadow: 5px 20px 50px #000;
+            font-family: "Papyrus", Fantasy;
+        }
+    </style>
 </html>
