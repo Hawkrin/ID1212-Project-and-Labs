@@ -7,8 +7,13 @@
 </head>
 <body>
     <form id="signInBox" method="post">
+
+        <p><%= error %></p>
         <div id="signin">
             <h2>Sign Up</h2>
+            <!-- Error for username -->
+            <p style="font-size: xx-small;"><%= form_error[0] %></p>
+            <% console.log(form_error[0])%>
             <label id="username">
                 <input 
                     type="text"
@@ -16,9 +21,8 @@
                     placeholder='Username'
                 />
             </label> 
-
-            <p><%= form_error[0].username %></p>
-
+            <!-- Error for email -->
+            <p style="font-size: xx-small; padding-top: -10px;"><%= form_error[0] %></p>
             <label id="email">
                 <input 
                     type="text"
@@ -26,6 +30,8 @@
                     placeholder='Email'
                 />
             </label>
+            <!-- Error for password -->
+            <p style="font-size: xx-small;"><%= form_error[0] %></p>
             <label id="password">
                 <input 
                     type="password"
@@ -33,6 +39,8 @@
                     placeholder='Password' 
                 />
             </label>
+            <!-- Error for cofirmPassword -->
+            <p style="font-size: xx-small;"><%= form_error[0] %></p>
             <label id="confirmpassword">
                 <input 
                     type="password"
@@ -42,7 +50,7 @@
             </label>
             <label id="signin-footer">
                 <button id='signUpButton' type="submit">Sign Up</button>
-                <span> <a href="/login" style="text-decoration: none; color:black;">Not a member yet? Register now</a></span>
+                <span> <a href="/auth/login" style="text-decoration: none; color:black;">Not a member yet? Register now</a></span>
             </label>
         </div>
     </form>
@@ -57,7 +65,7 @@
     }
     #signin{
         padding-top: 40px;
-        height: 400px;
+        height: 500px;
         width: 400px;
         display: flex; 
         flex-direction: column;

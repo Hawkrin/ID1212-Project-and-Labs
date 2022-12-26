@@ -6,15 +6,45 @@ const { formErrorFormater } = require("../util/errorFormater");
 
 const router = Router();
 
-const { register } = require('../controller/user.controller')
+const { register, login } = require('../controller/user.controller')
 
 router
 
     //Login routes
     .get("/login", (req, res, next) => {
-        res.render('login');
+        res.render('login', {
+            error: req.flash("error"), 
+            form_error: req.flash("form-error")
+        });
     })
-    .post("/login", (req, res, next) => {
+    .post("/login", 
+    
+    [
+        check("email", "Doesn't recognize this email")
+            .isEmail()
+            .normalizeEmail(),
+        check("password", "Password must be entered")
+            .exists()
+    ],
+
+    (req, res) => {
+        const {password, email} = _.pick(req.body, ["password", "email"]);
+
+        //Form errors.
+        const errors = validationResult(req);
+        if (errors) {
+            req.flash("form-error", formErrorFormater(errors));
+            return res.redirect(fullUrl(req));
+        }
+
+        login(email, password)
+            .then((user) => {
+                return res.json(user);
+            })
+            .catch((error) => {
+                req.flash("error", error);
+                return res.redirect(fullUrl(req));
+            })
 
     })
 
@@ -51,12 +81,14 @@ router
     
     (req, res) => {
         const {username, password, confirmpassword, email} = _.pick(req.body, ["username", "password", "confirmpassword", "email"]);
- 
+
+        //Form errors.
         const errors = validationResult(req);
-        if (errors) {
+        if (errors.errors.length > 0) {
             req.flash("form-error", formErrorFormater(errors));
             return res.redirect(fullUrl(req));
         }
+
         
         register(username, password, confirmpassword, email)
             .then((user) => {

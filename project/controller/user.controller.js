@@ -11,6 +11,13 @@ const User = require("../model/user.model")
  */
 const login = (email, password) => {
     return new Promise((resolve, reject) => {
+        User.loginUser(email, password)
+            .then((user) => {
+                return resolve(user);
+            })
+            .catch((error) => {
+                return reject(error.message);
+            })
         
     })
 }
@@ -32,7 +39,6 @@ const register = (username, password, confirmpassword, email) => {
         User.userAlreadyExists(username, email)
             .then((userExists) => {
                 
-                //if (password ==! confirmpassword) { return reject("Passwords does not match"); } 
                 if (userExists) { return reject("User Already exists"); }
 
                 const newUser = new User({
@@ -53,4 +59,4 @@ const register = (username, password, confirmpassword, email) => {
     
 }
 
-module.exports = { register }
+module.exports = { register, login }
