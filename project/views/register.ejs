@@ -7,6 +7,8 @@
 </head>
 <body>
     <form id="signInBox" method="post">
+
+        <p><%= error %></p>
         <div id="signin">
             <h2>Sign Up</h2>
              
@@ -18,6 +20,7 @@
                 />
             </label> 
 
+            <!-- Error for username -->
             <p><%= form_error[0].username %></p>
 
             <label id="email">
@@ -28,6 +31,9 @@
                 />
             </label>
    
+            <!-- Error for username -->
+            <p><%= form_error[0].email %></p>
+            
             <label id="password">
                 <input 
                     type="password"
@@ -36,6 +42,9 @@
                 />
             </label>
    
+            <!-- Error for username -->
+            <p><%= form_error[0].password %></p>
+            
             <label id="confirmpassword">
                 <input 
                     type="password"
@@ -43,6 +52,10 @@
                     placeholder='Confirm password' 
                 />
             </label>
+            
+            <!-- Error for username -->
+            <p><%= form_error[0].confirmpassword %></p>
+            
             <label id="signin-footer">
                 <button id='signUpButton' type="submit">Sign Up</button>
                 <span> <a href="/login" style="text-decoration: none; color:black;">Not a member yet? Register now</a></span>

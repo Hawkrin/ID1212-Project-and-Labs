@@ -51,7 +51,8 @@ router
     
     (req, res) => {
         const {username, password, confirmpassword, email} = _.pick(req.body, ["username", "password", "confirmpassword", "email"]);
- 
+
+        //Form errors.
         const errors = validationResult(req);
         if (errors) {
             req.flash("form-error", formErrorFormater(errors));

@@ -32,7 +32,6 @@ const register = (username, password, confirmpassword, email) => {
         User.userAlreadyExists(username, email)
             .then((userExists) => {
                 
-                //if (password ==! confirmpassword) { return reject("Passwords does not match"); } 
                 if (userExists) { return reject("User Already exists"); }
 
                 const newUser = new User({
