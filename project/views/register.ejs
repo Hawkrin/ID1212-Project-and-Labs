@@ -17,7 +17,8 @@
                     placeholder='Username'
                 />
             </label> 
-            <p>Error: <%=form_error[0].username %> </p>
+
+            <p><%= form_error[0].username %></p>
 
             <label id="email">
                 <input 
@@ -38,7 +39,7 @@
             <label id="confirmpassword">
                 <input 
                     type="password"
-                    name="confirmpassword
+                    name="confirmpassword"
                     placeholder='Confirm password' 
                 />
             </label>
