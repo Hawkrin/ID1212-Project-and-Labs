@@ -8,4 +8,9 @@ router
         res.render('forumpage');
     })
 
+    .get("/createpost", (req, res, next) => {
+        res.render('createthread');
+    })
+
+
 module.exports = router;
