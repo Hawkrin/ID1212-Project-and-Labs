@@ -1,10 +1,12 @@
 const { Router } = require("express");
 
+const authenticated = require("../middleware/auth.middleware");
+
 const router = Router();
 
 router
 
-    .get("/", (req, res, next) => {
+    .get("/", authenticated, (req, res) => {
         res.render('home');
     })
 

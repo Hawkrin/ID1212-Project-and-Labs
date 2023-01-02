@@ -5,6 +5,7 @@ const flash = require("connect-flash");
 const express = require('express');
 const http = require("http");
 const session = require("express-session");
+const cookieParser = require("cookie-parser");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -16,6 +17,7 @@ require("./db").connect();
 //App configuration
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+app.use(cookieParser());
 
 app.set('view engine', 'ejs');
 

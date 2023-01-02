@@ -3,8 +3,10 @@ const _ = require("lodash");
 const { fullUrl } = require("../util/url");
 const { check, validationResult } = require('express-validator/check');
 const { formErrorFormater } = require("../util/errorFormater");
+const jwt = require("jsonwebtoken")
 
 const router = Router();
+
 
 const { register, login } = require('../controller/user.controller')
 
@@ -12,6 +14,7 @@ router
 
     //Login routes
     .get("/login", (req, res, next) => {
+
         res.render('login', {
             error: req.flash("error"), 
             form_error: req.flash("form-error")
@@ -32,14 +35,16 @@ router
 
         //Form errors.
         const errors = validationResult(req);
-        if (errors) {
+        if (errors.errors.length > 0) {
             req.flash("form-error", formErrorFormater(errors));
             return res.redirect(fullUrl(req));
         }
 
         login(email, password)
             .then((user) => {
-                return res.json(user);
+                const token = jwt.sign(user._id.toString(), process.env.JWT_TOKEN);
+                return res.cookie("Authenticate", token).redirect("/");
+                
             })
             .catch((error) => {
                 req.flash("error", error);
@@ -77,9 +82,11 @@ router
                 }
             })
     ],
-
+    
+    
     (req, res) => {
         const {username, password, confirmpassword, email} = _.pick(req.body, ["username", "password", "confirmpassword", "email"]);
+
 
         //Form errors.
         const errors = validationResult(req);
@@ -91,14 +98,13 @@ router
         
         register(username, password, confirmpassword, email)
             .then((user) => {
-                return res.json(user);
+                const token = jwt.sign(user._id.toString(), process.env.JWT_TOKEN);
+                return res.cookie("Authenticate", token).redirect("/");
             })
             .catch((error) => {
-                console.log(error);
                 req.flash("error", error);
                 return res.redirect(fullUrl(req));
             })
-        res.redirect('/home')
     })
 
 module.exports = router;

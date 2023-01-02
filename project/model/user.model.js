@@ -3,7 +3,8 @@ const validator = require('validator');
 
 
 //Utils
-const bcrypt = require("bcrypt")
+const bcrypt = require("bcrypt");
+const { reject } = require("lodash");
 
 const userSchema = new mongoose.Schema({
     type: {
@@ -57,17 +58,19 @@ userSchema.statics.userAlreadyExists = function (username, email) {
 }
 
 userSchema.statics.loginUser = function(email, password) {
-    this.findOne({ email })
-        .then((user) => {
-            if (!user) { return reject("Email does not exists."); }
+    return new Promise((resolve, reject) => {
+        this.findOne({ email })
+            .then((user) => {
+                if (!user) { return reject("Email does not exists."); }
 
-            bcrypt.compare(password, user.password, (error, result) => {
-                if (error) { return reject(error); }
-                if (result) {
-                    return resolve(user);
-                }
+                bcrypt.compare(password, user.password, (error, result) => {
+                    if (error) { return reject(error); }
+                    if (result) {
+                        return resolve(user);
+                    }
+                })
             })
-        })
+    })
 }
 
 module.exports = mongoose.model("user", userSchema)
