@@ -1,13 +1,88 @@
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>forumPage</title>
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>forumPage</title>
+    </head>
+    <body>
 
-    <%- include('./partials/navbar.ejs') %>
-    <h5>FORUM PAGE</h5>
-</body>
+        <%- include('./partials/navbar.ejs') %>
+
+        <div id="createPostButtonbox">
+            <button id="createNewThreadButton">
+                Create thread
+            </button>
+        </div>
+        <div id="postsBox">
+
+            <div id="posts"></div>
+            <div id="posts"></div>
+            <div id="posts"></div>
+            <div id="posts"></div>
+            <div id="posts"></div>
+            <div id="posts"></div>
+            <div id="posts"></div>
+            <div id="posts"></div>
+            <div id="posts"></div>
+            <div id="posts"></div>
+            <div id="posts"></div>
+            <div id="posts"></div>
+            
+        </div>
+
+    </body>
+    <style>
+        #createPostButtonBox {
+            width: 1000px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #createNewThreadButton {
+            font-family: "Open Sans", sans-serif;
+            font-size: 16px;
+            letter-spacing: 2px;
+            text-decoration: none;
+            text-transform: uppercase;
+            color: #000;
+            cursor: pointer;
+            border: 3px solid;
+            padding: 0.25em 0.5em;
+            box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
+            position: relative;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+        }
+        #createNewThreadButton:hover {
+            box-shadow: 0px 0px 0px 0px;
+            top: 5px;
+            left: 5px;
+        }
+        #postsBox {
+            padding-top: 2em;
+            background:#f0f1f3;
+            border-top: solid;
+            border-bottom: solid;
+            border-color: #596d80;
+            height: 700px;
+            width: 1000px;
+            margin: auto;
+            margin-top: 50px;
+            display: grid;
+            grid-gap: 5rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            overflow: scroll;
+        }
+        #posts {
+            height: 5em;
+            width: 25em;
+            margin-right: auto;
+            margin-left: auto;
+            border: double;
+            border-color: #596d80
+        }
+    </style>
+
 </html>

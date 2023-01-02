@@ -1,13 +1,91 @@
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
 
-    <%- include('./partials/navbar.ejs') %>
-    <h5>CREATE THREAD</h5>
-</body>
+        <%- include('./partials/navbar.ejs') %>
+        <div id="createPostContainer">
+            <div className="editTitleContainer">
+                <textarea id="titleArea"
+                    maxLength="30"
+                    placeholder='Enter a Title..'
+                ></textarea>
+            </div>
+            <div id="editBodyContainer">
+                <textarea id="bodyArea"
+                    placeholder='Write a post...'
+                ></textarea>
+            </div>
+            <div id="buttonPosition">
+                <button id="createButton">Create</button>
+            </div>
+        </div>
+    </body>
+    <style>
+        #createPostContainer {
+            background:#a9b9c9;
+            border-style: solid;
+            border-color: #596d80;
+            height: 700px;
+            width: 800px;
+            margin: auto;
+            margin-top: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #editTitleContainer {
+            padding-top: 0px;
+            border-style: solid;
+            border-top-color: #596d80;
+            border-bottom-color: #596d80;
+            border-left-width: 0px;
+            border-right-width: 0px;
+        }
+        #titleArea {
+            height: 50px;
+            width: 794px;
+            font-size: xx-large;
+            text-align: center;
+            resize:'none';
+        }
+        #editBodyContainer {
+            padding-top: 20px;
+            border-style: solid;
+            border-top-color: #596d80;
+            border-bottom-color: #596d80;
+            border-left-width: 0px;
+            border-right-width: 0px;
+        }
+        #bodyArea {
+            height: 500px;
+            width: 794px;
+            font-size: larger;
+            resize: none;
+        }
+        #buttonPosition {
+            padding-top: 20px;
+            text-align: center;
+            display: block;
+            position: relative;
+            bottom:   0;
+        }
+        #createButton {
+            color: #3faeca;
+            padding: 1.0rem 3.0rem;
+            text-transform: uppercase;
+            font-size: 2rem;
+            letter-spacing: .15rem;
+        }
+        #createButton:hover {
+            color: #268197;
+            position:relative;
+            z-index:5;
+            opacity: 1.0;
+        }   
+    </style>
 </html>
