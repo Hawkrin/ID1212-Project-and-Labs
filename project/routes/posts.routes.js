@@ -47,5 +47,17 @@ router
             })
     })
 
+    .get("/post/:id", authenticated, (req, res) => {
+        const {id} = _.pick(req.params, ["id"]);
+
+        PostController.findPost(id)
+            .then((post) => {
+                return res.render("forumpage", {post}); //Ändra url
+            })
+            .catch((error) => {
+                return res.render("forumpage", {error}); //Låt vara
+            })
+    })
+
 
 module.exports = router;

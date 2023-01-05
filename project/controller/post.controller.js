@@ -40,5 +40,11 @@ const findAllPost = () => {
     })
 }
 
-module.exports = { createPost, findAllPost };
+const findPost = (id) => {
+    return new Promise((resolve, reject) => {
+
+    })
+} 
+
+module.exports = { createPost, findAllPost, findPost};
 
