@@ -1,3 +1,4 @@
+<% var image = '../images/generic-male-avatar-rectangular.svg' %>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -6,31 +7,39 @@
         <title>Document</title>
     </head>
     <body>
-
         <%- include('./partials/navbar.ejs') %>
         <div id="accountBox">
             <div id="account">
-                <div id="imageBox">
-                    <img 
-                        src="../images/generic-male-avatar-rectangular.png"
-                        alt="accountImage"
-                        height="300px" 
-                        width="300px"
+                <div> 
+                    <h3>Account Summary</h3> 
+                </div>
+                <div id="accountSummaryBox">
+                    <img
+                    src= <% {image} %>
+                    alt = ""
+                    height = "300px"
+                    width= "300px"
                     >
+                    <div>
+                        <ul>
+                            <li>Account name: </li>
+                            <br>
+                            <li>Account email: </li> 
+                            <br>
+                            <li>Posts created: </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
-
     </body>
     <style>
         #accountBox{
             display: flex; 
-            flex-direction: column;
-            align-items: center;
+            justify-content: center;
             padding-top: 100px;
         }
         #account{
-            padding-top: 80px;
             height: 500px;
             width: 1000px;
             display: flex; 
@@ -41,11 +50,10 @@
             box-shadow: 5px 20px 50px #000;
             font-family: "Papyrus", Fantasy;
         }
-        #imageBox {
+        #accountSummaryBox {
             display: flex;
-            justify-content: flex-start;
-            align-items: flex-start;
-            align-content: flex-start;
+            flex-direction: row;
+            padding-top: 20px;
         }
     </style>
 </html>

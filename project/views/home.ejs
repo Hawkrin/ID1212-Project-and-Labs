@@ -1,13 +1,37 @@
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-</head>
-<body>
-    <%- include('./partials/navbar.ejs') %>
-    <h5>HOME</h5>
-    
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Home</title>
+    </head>
+    <body>
+        <%- include('./partials/navbar.ejs') %>
+        <h1 id="welcomeTitle">
+            Welcome to the forum user
+        </h1>
+        <div id="homeList">
+            <ul >
+                <li>You can navigate through the site via the header</li>
+                <br>
+                <li>If you click on <a href="/views/about.ejs">About</a> you can read the sites rules</li>
+                <br>
+                <li>If you click on <a href="forumpage.ejs">Posts</a> you can read see the current posts as well as create a new one.</li>
+                <br>
+                <li>If you click on <a href="account.ejs">Account</a> you can see your account details.</li>
+            </ul>
+        </div>
+        
+    </body>
+    <style>
+        #welcomeTitle {
+            display: flex;
+            justify-content: center;
+        }
+        #homeList {
+            font-size: large;
+            padding-top: 50px;
+        }
+
+    </style>
 </html>

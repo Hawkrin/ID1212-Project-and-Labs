@@ -10,25 +10,31 @@
         <%- include('./partials/navbar.ejs') %>
 
         <div id="createPostButtonbox">
-            <button id="createNewThreadButton">
-                <a href="/posts/createPost">Create thread</a>
+            <button id="createNewPost">
+                <a id="createPostTitle" href="/posts/createPost">Create Post</a>
             </button>
         </div>
         <div id="postsBox">
-
-            <div id="posts"></div>
-            <div id="posts"></div>
-            <div id="posts"></div>
-            <div id="posts"></div>
-            <div id="posts"></div>
-            <div id="posts"></div>
-            <div id="posts"></div>
-            <div id="posts"></div>
-            <div id="posts"></div>
-            <div id="posts"></div>
-            <div id="posts"></div>
-            <div id="posts"></div>
-            
+            <% posts.map((post, i) => { %> 
+                <div key={i} id="posts" onclick="">
+                    <div id="forumPagePostTitle">
+                        <%= post.title %> 
+                    </div>
+                    <br>
+                    <div id="forumPagePostDescription">
+                        <%=  post.description %>
+                    </div>
+                    <br>
+                    <div id="dateBox">
+                        <div>
+                            <%= post.date.toString().split('G')[0].split('2023')[0] %>
+                        </div>
+                        <div>
+                            <%= post.date.toString().split('G')[0].split('2023')[1] %>
+                        </div>
+                    </div>
+                </div>
+            <% }) %>     
         </div>
     </body>
     <style>
@@ -38,7 +44,7 @@
             align-items: center;
             justify-content: center;
         }
-        #createNewThreadButton {
+        #createNewPost {
             font-family: "Open Sans", sans-serif;
             font-size: 16px;
             letter-spacing: 2px;
@@ -54,10 +60,14 @@
             -webkit-user-select: none;
             touch-action: manipulation;
         }
-        #createNewThreadButton:hover {
+        #createNewPost:hover {
             box-shadow: 0px 0px 0px 0px;
             top: 5px;
             left: 5px;
+        }
+        #createPostTitle {
+            text-decoration: none;
+            color: black;
         }
         #postsBox {
             padding-top: 2em;
@@ -75,13 +85,31 @@
             overflow: scroll;
         }
         #posts {
-            height: 5em;
+            height: 7em;
             width: 25em;
             margin-right: auto;
             margin-left: auto;
             border: double;
-            border-color: #596d80
+            border-color: #596d80;
+        }
+        #posts:hover {
+            cursor: pointer;
+        }
+        #forumPagePostTitle {
+            display: flex;
+            justify-content: center;
+            font-weight: bold;
+        }
+        #forumPagePostDescription {
+            display: flex;
+            text-overflow: ellipsis;
+            width: 398px;
+        }
+        #dateBox {
+            display: flex;
+            justify-content: space-between;
+            padding-left: 5px;
+            padding-right: 5px;
         }
     </style>
-
 </html>

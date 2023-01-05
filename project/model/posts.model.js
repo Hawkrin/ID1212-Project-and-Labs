@@ -11,6 +11,11 @@ const postsSchema = new mongoose.Schema({
         unique: false,
         required: true,
     },
+    description: {
+        type: String,
+        unique: false,
+        required: true,
+    },
     body: {
         type: String,
         required: true,

@@ -34,9 +34,9 @@ router
     })
 
     .post("/createpost", authenticated, (req, res, next) => {
-        const {title, body} = _.pick(req.body, ["title", "body"]);
+        const {title, description, body} = _.pick(req.body, ["title", "description", "body"]);
 
-        PostController.createPost(title, body, req.user)
+        PostController.createPost(title, description, body, req.user)
             .then((result) => {
                 console.log(result);
                 return res.redirect(fullUrl(req));
@@ -52,7 +52,7 @@ router
 
         PostController.findPost(id)
             .then((post) => {
-                return res.render("forumpage", {post}); //Ändra url
+                return res.render("summary", {post}); //Ändra url
             })
             .catch((error) => {
                 return res.render("forumpage", {error}); //Låt vara

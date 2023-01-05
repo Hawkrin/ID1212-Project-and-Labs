@@ -17,6 +17,13 @@
                     name="title"
                 ></textarea>
             </label>
+            <label id="editDescriptionContainer">
+                <textarea id="descriptionArea"
+                    placeholder='Write a brief description...'
+                    maxLength="100"
+                    name="description"
+                ></textarea>
+            </label>
             <label id="editBodyContainer">
                 <textarea id="bodyArea"
                     placeholder='Write a post...'
@@ -25,6 +32,9 @@
             </label>
             <div id="buttonPosition">
                 <button id="createButton">Create</button>
+                <button id="createButton">
+                    <a id="buttonText" href="/posts/forumPage">Cancel</a>
+                </button> 
             </div>
         </form>
     </body>
@@ -56,6 +66,20 @@
             text-align: center;
             resize: none;
         }
+        #editDescriptionContainer {
+            padding-top: 20px;
+            border-style: solid;
+            border-top-color: #596d80;
+            border-bottom-color: #596d80;
+            border-left-width: 0px;
+            border-right-width: 0px;
+        }
+        #descriptionArea {
+            height: 80px;
+            width: 794px;
+            font-size: larger;
+            resize: none;
+        }
         #editBodyContainer {
             padding-top: 20px;
             border-style: solid;
@@ -73,13 +97,12 @@
         #buttonPosition {
             padding-top: 20px;
             text-align: center;
-            display: block;
-            position: relative;
-            bottom:   0;
+            display: flex;
+            justify-content: space-between;
+            gap: 400px;
         }
         #createButton {
             color: #3faeca;
-            padding: 1.0rem 3.0rem;
             text-transform: uppercase;
             font-size: 2rem;
             letter-spacing: .15rem;
@@ -89,6 +112,12 @@
             position:relative;
             z-index:5;
             opacity: 1.0;
+            cursor: pointer;
+
         }   
+        #buttonText {
+            text-decoration: none;
+            color: #3faeca;
+        }
     </style>
 </html>

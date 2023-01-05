@@ -1,22 +1,22 @@
 const User = require("../model/user.model")
 const Post = require("../model/posts.model")
 
-let PostController = {
-    findPost: async(req, res) => {
-        let found = await Post.find({name: req.params.title});
-        res.json(found);
-    },
-    createPost: async(req, res) => {
-        let newPost = new Post(req.body);
-        let savedPost = await newPost.save();
-        res.json(savedPost);
-    }
-}
-
-const createPost = (title, body, user) => {
+/**
+ * Creates a new post
+ * Returning a promise, resolve if successfully created the post.
+ * Reject if problem occurs while creating the post.
+ * 
+ * @param {String} title 
+ * @param {String} description 
+ * @param {String} body 
+ * @param {String} user 
+ * @returns {Promise}
+ */
+const createPost = (title, description, body, user) => {
     return new Promise((resolve, reject) => {
         const newPost = new Post({
             title,
+            description,
             body,
             user
         });
@@ -28,6 +28,13 @@ const createPost = (title, body, user) => {
     })
 }
 
+/**
+ * Checks database for the posts
+ * Returns a promise if the posts are found
+ * Otherwise rejects the promise
+ * 
+ * @returns {Promise}
+ */
 const findAllPost = () => {
     return new Promise((resolve, reject) => {
         Post.find()

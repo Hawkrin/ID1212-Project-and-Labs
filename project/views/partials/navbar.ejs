@@ -1,10 +1,10 @@
 <div id="navContainer">
     <div id="leftHeaderContainer">
         <nav id="nav">
-            <ul class="navOptions">
+            <ul id="navOptions">
                 <li><a href="/">Home</a></li>
                 <li><a href="/about">About</a></li>
-                <li><a href="/posts/forumpage">Threads</a></li>
+                <li><a href="/posts/forumpage">Posts</a></li>
                 <li><a href="/account">Account</a></li>
             </ul>   
         </nav>
@@ -20,17 +20,14 @@
     #navContainer {
         background-color: #f2f2f2;
         border: 1px solid #ccc;
-        width: 100%;
-        margin: 0 0 1em 0;
         padding: 0;
         display: flex;
         justify-content: space-between;
-        position: relative;
+        margin: 0 0 1em 0;
     }
     #leftHeaderContainer{
         display: flex;
         justify-content: flex-start;
-        width: 17%;
     }
     #nav ul {
         list-style: none;
@@ -58,6 +55,7 @@
     #middleHeaderContainer {
         display: flex;
         justify-content: center;
+        padding-right: 10%;
     }
     #headerTitle {
         color: #333333;
@@ -68,6 +66,9 @@
     #leftHeaderContainer {
         display: flex;
         justify-content: flex-end;
+    }
+    #logoutButton:hover {
+        cursor: pointer;
     }
 </style>
 

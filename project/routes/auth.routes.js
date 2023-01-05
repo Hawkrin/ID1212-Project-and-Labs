@@ -3,6 +3,7 @@ const _ = require("lodash");
 const { fullUrl } = require("../util/url");
 const { check, validationResult } = require('express-validator/check');
 const { formErrorFormater } = require("../util/errorFormater");
+const authenticated = require("../middleware/auth.middleware");
 const jwt = require("jsonwebtoken")
 
 const router = Router();
@@ -86,8 +87,7 @@ router
     
     (req, res) => {
         const {username, password, confirmpassword, email} = _.pick(req.body, ["username", "password", "confirmpassword", "email"]);
-
-
+        
         //Form errors.
         const errors = validationResult(req);
         if (errors.errors.length > 0) {
