@@ -1,5 +1,3 @@
-
-
 import java.util.Properties;
 import javax.mail.Folder;
 import javax.mail.PasswordAuthentication;
@@ -40,7 +38,7 @@ public class Lab5 {
       message.setFrom(new InternetAddress(sendFrom));
       message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(sendTo));
       message.setSubject("Testing Subject");
-      message.setText("Hello, this is sample for to check se" );
+      message.setText("Hello, this is Harry Lazaridis" );
 
       Transport.send(message);
 
@@ -57,9 +55,9 @@ public class Lab5 {
     properties.put("mail.imap.host", host);
     properties.put("mail.imap.port", port);
     properties.put("mail.imap.starttls.enable", "true");
-    Session emailSession = Session.getDefaultInstance(properties);
+    Session session = Session.getDefaultInstance(properties);
 
-    Store store = emailSession.getStore("imaps");
+    Store store = session.getStore("imaps");
     store.connect(host, USERNAME, PASSWORD);
 
     Folder emailFolder = store.getFolder("INBOX");
@@ -99,7 +97,7 @@ public class Lab5 {
 
     fetchEmails(recievingHost, recievingPort);
 
-    sendEmails(to, from, sendingHost, sendingPort);
+    //sendEmails(to, from, sendingHost, sendingPort);
   }
 
 

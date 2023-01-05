@@ -1,7 +1,6 @@
 const mongoose = require("mongoose")
 const validator = require('validator');
 
-
 //Utils
 const bcrypt = require("bcrypt");
 
@@ -16,18 +15,21 @@ const userSchema = new mongoose.Schema({
         unique: true,
         required: true,
     },
-
     password: {
         type: String,
         required: true,
     },
-
     email: {
         type: String,
         required: true,
         lowercase: true,
         unique: true,
-    }
+    },
+    posts: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "posts"
+
+    }]
 })
 
 

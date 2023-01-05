@@ -8,22 +8,22 @@
     <body>
 
         <%- include('./partials/navbar.ejs') %>
-        <div id="createPostContainer">
-            <div className="editTitleContainer">
+        <form id="createPostContainer" method="POST">
+            <label id="editTitleContainer">
                 <textarea id="titleArea"
                     maxLength="30"
                     placeholder='Enter a Title..'
                 ></textarea>
-            </div>
-            <div id="editBodyContainer">
+            </label>
+            <label id="editBodyContainer">
                 <textarea id="bodyArea"
                     placeholder='Write a post...'
                 ></textarea>
-            </div>
+            </label>
             <div id="buttonPosition">
                 <button id="createButton">Create</button>
             </div>
-        </div>
+        </form>
     </body>
     <style>
         #createPostContainer {
@@ -51,7 +51,7 @@
             width: 794px;
             font-size: xx-large;
             text-align: center;
-            resize:'none';
+            resize: none;
         }
         #editBodyContainer {
             padding-top: 20px;
