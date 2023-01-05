@@ -4,7 +4,6 @@ const validator = require('validator');
 
 //Utils
 const bcrypt = require("bcrypt");
-const { reject } = require("lodash");
 
 const userSchema = new mongoose.Schema({
     type: {
