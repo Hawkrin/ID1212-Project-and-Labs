@@ -8,7 +8,7 @@ const postsSchema = new mongoose.Schema({
     },
     title: {
         type: String,
-        unique: true,
+        unique: false,
         required: true,
     },
     body: {
@@ -18,8 +18,9 @@ const postsSchema = new mongoose.Schema({
     date: {
         type: Date,
         required: true,
+        default: new Date()
     },
-    owner: {
+    user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "user"
     }

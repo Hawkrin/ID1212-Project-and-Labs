@@ -8,16 +8,19 @@
     <body>
 
         <%- include('./partials/navbar.ejs') %>
+
         <form id="createPostContainer" method="POST">
             <label id="editTitleContainer">
                 <textarea id="titleArea"
                     maxLength="30"
                     placeholder='Enter a Title..'
+                    name="title"
                 ></textarea>
             </label>
             <label id="editBodyContainer">
                 <textarea id="bodyArea"
                     placeholder='Write a post...'
+                    name="body"
                 ></textarea>
             </label>
             <div id="buttonPosition">
