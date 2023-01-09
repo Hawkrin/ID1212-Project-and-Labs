@@ -7,19 +7,10 @@ const router = Router();
 
 router
 
-    .get("/", authenticated, (req, res) => {
-       
-        User.findById(req.user)
-            .then((user) => {
-                res.render('home', {
-                    user
-                });
-            })
-            .catch((error) => {
-
-            })       
-
-       
+    .get("/", authenticated, (req, res) => { 
+        res.render('home', {
+            user: req.user
+        }); 
     })
 
 module.exports = router;
