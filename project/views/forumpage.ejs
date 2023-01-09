@@ -16,7 +16,7 @@
         </div>
         <div id="postsBox">
             <% posts.map((post, i) => { %> 
-                <a href="/posts/post/<%=post._id%>">
+                <a style="text-decoration: none; color:black;" href="/posts/post/<%=post._id%>">
                     <div key={i} id="posts" onclick="">
                         <div id="forumPagePostTitle">
                             <%= post.title %> 
