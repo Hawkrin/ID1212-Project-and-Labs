@@ -57,7 +57,7 @@ public class Server implements SendMail {
 
         try {
             Server obj = new Server();
-            SendMail stub = (SendMail) UnicastRemoteObject.exportObject(obj, 1099);
+            SendMail stub = (SendMail) UnicastRemoteObject.exportObject(obj, 60123);
 
             // Bind the remote object's stub in the registry
             Registry registry = LocateRegistry.getRegistry();
