@@ -57,6 +57,14 @@ userSchema.statics.userAlreadyExists = function (username, email) {
     return this.findOne({ $or: [{ username }, { email }] })
 }
 
+userSchema.statics.getUser = function(_id) {
+    return new Promise((resolve, reject) => {
+        this.findById(id)
+            .then((user) => { return resolve(user); })
+            .catch((error) => { return reject(user); })
+    })
+}
+
 userSchema.statics.loginUser = function(email, password) {
     return new Promise((resolve, reject) => {
         this.findOne({ email })

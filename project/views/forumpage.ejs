@@ -16,24 +16,26 @@
         </div>
         <div id="postsBox">
             <% posts.map((post, i) => { %> 
-                <div key={i} id="posts" onclick="">
-                    <div id="forumPagePostTitle">
-                        <%= post.title %> 
-                    </div>
-                    <br>
-                    <div id="forumPagePostDescription">
-                        <%=  post.description %>
-                    </div>
-                    <br>
-                    <div id="dateBox">
-                        <div>
-                            <%= post.date.toString().split('G')[0].split('2023')[0] %>
+                <a href="/posts/post/<%=post._id%>">
+                    <div key={i} id="posts" onclick="">
+                        <div id="forumPagePostTitle">
+                            <%= post.title %> 
                         </div>
-                        <div>
-                            <%= post.date.toString().split('G')[0].split('2023')[1] %>
+                        <br>
+                        <div id="forumPagePostDescription">
+                            <%= post.description %>
+                        </div>
+                        <br>
+                        <div id="dateBox">
+                            <div>
+                                <%= post.date.toString().split('G')[0].split('2023')[0] %>
+                            </div>
+                            <div>
+                                <%= post.date.toString().split('G')[0].split('2023')[1] %>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
             <% }) %>     
         </div>
     </body>

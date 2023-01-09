@@ -49,7 +49,9 @@ const findAllPost = () => {
 
 const findPost = (id) => {
     return new Promise((resolve, reject) => {
-
+        Post.findById(id)
+            .then((post) => { return resolve(post); })
+            .catch((error) => { return reject(error); })
     })
 } 
 
