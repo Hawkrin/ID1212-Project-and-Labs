@@ -50,8 +50,6 @@ router
     .get("/post/:id", authenticated, (req, res) => {
         const {id} = _.pick(req.params, ["id"]);
 
-        console.log(id);
-
         PostController.findPost(id)
             .then((post) => {
                 return res.render("post", {post}); //Ändra url

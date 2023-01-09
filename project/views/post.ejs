@@ -10,13 +10,66 @@
         <%- include('./partials/navbar.ejs') %>
 
         <div id="postSummaryBox">
-            <div id="postSummaryTitle"></div>
-            <div id="postSummaryDescription"></div>
-            <div id="postSummaryBody"></div>
-            <div id="postSummaryDate"></div>
-            <button>Delete post</button>
+            <div id="postContent">
+                <div id="postSummaryTitle">
+                    <%= post.title %>
+                </div>
+                <br>
+                <div id="postSummaryDescription">
+                    <%= post.description %>
+                </div>
+                <br>
+                <div id="postSummaryBody">
+                    <%= post.body %>
+                </div>
+                <br>
+                <div id="postSummaryDate">
+                    <%= post.date %>
+                </div>
+                <div>
+                    <button>Delete post</button>
+                </div>
+            </div>   
         </div>
-        
+        <div id="postCommentLayout">
+            <div id="createCommentBox">
+                <div id="commentTextArea">
+                    <textarea 
+                        id="commentTextArea"
+                        placeholder="Write a comment"
+                        maxlength="100"></textarea>
+                </div>
+                <div id="commentCreateButton">
+                    <button>Create</button>
+                </div>
+            </div>
+            <div id="postCommentsBox">
+                <div id="postCommentsBody">
+                    <div id="commentBody">
+                        <p>HEJ PÅ DIG LILLA HARRY</p>
+                    </div>
+                    <div id="commentWriter">
+                        <p>Malcolm</p>
+                    </div>
+                    <div id="commentDate">
+                        <p>Thu Jan 05 2023 18:58:04 </p>
+                    </div>
+                </div>
+            </div>
+            <div id="postCommentsBox">
+                <div id="postCommentsBody">
+                    <div id="commentBody">
+                        <p>HEJ PÅ DIG LILLA HARRY</p>
+                    </div>
+                    <div id="commentWriter">
+                        <p>Malcolm</p>
+                    </div>
+                    <div id="commentDate">
+                        <p>Thu Jan 05 2023 18:58:04 </p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
     <style>
         #postSummaryBox{
@@ -24,6 +77,64 @@
             flex-direction: column;
             align-items: center;
             padding-top: 100px;
+        }
+        #postContent{
+            padding-top: 80px;
+            height: 500px;
+            width: 700px;
+            display: flex; 
+            flex-direction: column;
+            align-items: center; 
+            background: f2f2f2;
+            border-radius: 10px;
+            box-shadow: 5px 20px 50px #000;
+            font-family: "Papyrus", Fantasy;
+        }
+        #createCommentBox {
+            height: 150px;
+            width: 500px;
+            background: f2f2f2;
+            border-radius: 10px;
+            box-shadow: 5px 20px 50px #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 5px;
+            
+        }
+        #commentTextArea {
+            font-size: larger;
+            resize: none;
+            height: 100px;
+            width: 300px;
+        }
+        #commentCreateButton {
+            display: flex;
+            justify-content: flex-end;
+        }
+        #postCommentLayout {
+            display: grid;
+            grid-template-rows: auto;
+            gap: 100px;
+            grid-template-areas: 
+            "a a a"
+            "b c c"
+            "b c c";
+        }
+        #postCommentsBox {
+            height: 150px;
+            width: 500px;
+            background: f2f2f2;
+            border-radius: 10px;
+            box-shadow: 5px 20px 50px #000;
+        }
+        #postCommentsBody {
+            display: flex;
+            flex-direction: column;
+            align-items: center; 
+            justify-content: center;
+            font-size: smaller;
         }
     </style>
 </html>
