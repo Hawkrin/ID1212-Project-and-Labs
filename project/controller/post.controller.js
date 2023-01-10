@@ -55,5 +55,13 @@ const findPost = (id) => {
     })
 } 
 
-module.exports = { createPost, findAllPost, findPost};
+const deletePost = (id) => {
+    return new Promise((resolve, reject) => {
+        Post.findByIdAndDelete(id)
+            .then((post) => { return resolve(post)})
+            .catch((error) => { return reject(error)})
+    })
+}
+
+module.exports = { createPost, findAllPost, findPost, deletePost};
 

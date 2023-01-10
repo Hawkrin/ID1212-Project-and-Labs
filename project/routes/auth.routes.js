@@ -54,6 +54,9 @@ router
 
     })
 
+    //Logout routes
+    .post("/logout", (req, res, next) => {})
+
     //Register routes
     .get("/register", (req, res) => {
         return res.render('register', {

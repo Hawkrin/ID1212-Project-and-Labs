@@ -6,6 +6,7 @@ const PostController = require("../controller/post.controller");
 
 const authenticated = require("../middleware/auth.middleware");
 const { fullUrl } = require("../util/url");
+const { reset } = require("nodemon");
 
 const router = Router();
 
@@ -14,6 +15,7 @@ router
     //Forum page
     .get("/forumpage", authenticated, (req, res, next) => {
         PostController.findAllPost()
+            // .populate('user', )
             .then((posts) => {
 
                 res.render('forumpage', {
@@ -52,10 +54,23 @@ router
 
         PostController.findPost(id)
             .then((post) => {
-                return res.render("post", {post}); //Ändra url
+                return res.render("post", {post});
             })
             .catch((error) => {
-                return res.render("forumpage", {error}); //Låt vara
+                return res.render("forumpage", {error});
+            })
+    })
+
+    //Deleting posts
+    .post("/post/:id", (req, res, next) => {
+        const {id} = _.pick(req.params, ["id"]);
+
+        PostController.deletePost(id)
+            .then((post) => {
+                return res.render("forumpage", {post})
+            })
+            .catch((error) => {
+                return res.render("forumpage", {error})
             })
     })
 

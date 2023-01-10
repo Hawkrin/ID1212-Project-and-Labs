@@ -12,7 +12,12 @@ const commentSchema = new mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "user"
-    }
+    },
+    date: {
+        type: Date,
+        required: true,
+        default: new Date()
+    },
 });
 
 module.exports = mongoose.model("comment", commentSchema);

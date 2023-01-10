@@ -22,6 +22,12 @@ const login = (email, password) => {
     })
 }
 
+const logout = () => {
+    return new Promise((resolve, reject) => {
+        
+    })
+}
+
 /**
  * Register user by taking username, password and email.
  * Encrypting password with hash and salt.

@@ -9,77 +9,69 @@
 
         <%- include('./partials/navbar.ejs') %>
 
+        <div id="createCommentBox">
+            <div id="commentTextArea">
+                <textarea 
+                    id="commentTextArea"
+                    placeholder="Write a comment"
+                    maxlength="100"></textarea>
+            </div>
+            <div id="commentCreateButton" >
+                <button id="commentCreateButton" >Create</button>
+            </div>
+        </div>
         <div id="postSummaryBox">
             <div id="postContent">
                 <div id="postSummaryTitle">
-                    <%= post.title %>
+                    <h2><%= post.title %></h2>
                 </div>
                 <br>
                 <div id="postSummaryDescription">
-                    <%= post.description %>
+                    <h3><%= post.description %></h3>
                 </div>
                 <br>
                 <div id="postSummaryBody">
-                    <%= post.body %>
+                    <h4><%= post.body %></h4>
                 </div>
                 <br>
                 <div id="postSummaryDate">
-                    <%= post.date %>
+                    <h5><%= post.date.toString().split('G')[0] %></h5>
                 </div>
-                <div>
-                    <button>Delete post</button>
+                <div id="deleteButtonContainer">
+                    <button><a method="POST" id="deletePostButton"  href="/posts/forumPage" >Delete post</a></button>
                 </div>
             </div>   
         </div>
+        <div id="postCommentLayoutContainer">
         <div id="postCommentLayout">
-            <div id="createCommentBox">
-                <div id="commentTextArea">
-                    <textarea 
-                        id="commentTextArea"
-                        placeholder="Write a comment"
-                        maxlength="100"></textarea>
-                </div>
-                <div id="commentCreateButton">
-                    <button>Create</button>
-                </div>
-            </div>
             <div id="postCommentsBox">
                 <div id="postCommentsBody">
                     <div id="commentBody">
                         <p>HEJ PÅ DIG LILLA HARRY</p>
                     </div>
-                    <div id="commentWriter">
-                        <p>Malcolm</p>
-                    </div>
-                    <div id="commentDate">
-                        <p>Thu Jan 05 2023 18:58:04 </p>
-                    </div>
-                </div>
-            </div>
-            <div id="postCommentsBox">
-                <div id="postCommentsBody">
-                    <div id="commentBody">
-                        <p>HEJ PÅ DIG LILLA HARRY</p>
-                    </div>
-                    <div id="commentWriter">
-                        <p>Malcolm</p>
-                    </div>
-                    <div id="commentDate">
-                        <p>Thu Jan 05 2023 18:58:04 </p>
-                    </div>
+                    <div id="commentFooter">
+                        <div id="commentWriter">
+                            <p>Malcolm</p>
+                        </div>
+                        <div id="commentDate">
+                            <p>Thu Jan 05 2023 18:58:04 </p>
+                        </div>
+                    </div> 
                 </div>
             </div>
         </div>
+    </div>
     </body>
     <style>
         #postSummaryBox{
             display: flex; 
             flex-direction: column;
             align-items: center;
-            padding-top: 100px;
+            padding-top: 40px;
+            padding-bottom: 40px;
         }
         #postContent{
-            padding-top: 80px;
+            padding-top: 30px;
             height: 500px;
             width: 700px;
             display: flex; 
@@ -89,6 +81,15 @@
             border-radius: 10px;
             box-shadow: 5px 20px 50px #000;
             font-family: "Papyrus", Fantasy;
+        }
+        #deleteButtonContainer {
+            display: flex;
+            justify-content: flex-end;
+            padding-left: 450px;
+        }
+        #deletePostButton {
+            text-decoration: none; 
+            color:black;
         }
         #createCommentBox {
             height: 150px;
@@ -101,7 +102,7 @@
             justify-content: center;
             flex-direction: column;
             gap: 5px;
-            
+            position: fixed;
         }
         #commentTextArea {
             font-size: larger;
@@ -113,14 +114,18 @@
             display: flex;
             justify-content: flex-end;
         }
+        #commentCreateButton:hover {
+            cursor: pointer;
+        }
+        #postCommentLayoutContainer {
+            display: flex;
+            justify-content: center;
+        }
         #postCommentLayout {
+            /* display: grid;
+            grid-gap: 5rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 2fr)); */
             display: grid;
-            grid-template-rows: auto;
-            gap: 100px;
-            grid-template-areas: 
-            "a a a"
-            "b c c"
-            "b c c";
         }
         #postCommentsBox {
             height: 150px;
@@ -129,12 +134,25 @@
             border-radius: 10px;
             box-shadow: 5px 20px 50px #000;
         }
+        /* #postCommentLayout:nth-child(n) {
+            background-color: red;
+        }
+        #postCommentLayout:nth-child(3n) {
+            background-color: blue; 
+        }
+        #postCommentLayout:nth-child(2n) {
+            background-color: pink; 
+        }    */
         #postCommentsBody {
             display: flex;
             flex-direction: column;
             align-items: center; 
             justify-content: center;
             font-size: smaller;
+        }
+        #commentFooter {
+            display: flex;
+            justify-content: space-between;
         }
     </style>
 </html>
