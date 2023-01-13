@@ -108,3 +108,5 @@ dist
 
 # TernJS port file
 .tern-port
+/labs/lab4/T_JPA/build/
+/labs/lab4/T_JPA/nbproject/private/
