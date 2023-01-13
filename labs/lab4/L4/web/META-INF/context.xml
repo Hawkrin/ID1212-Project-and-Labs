@@ -3,7 +3,7 @@
     
 <Resource name="jdbc/derby" auth="Container" type="javax.sql.DataSource"
     maxActive="50" maxIdle="30" maxWait="10000"
-    username="harry" password="harry"
+    username="stene" password="slask"
     driverClassName="org.apache.derby.jdbc.ClientDriver"
     url="jdbc:derby://localhost:1527/test" />
 </Context>

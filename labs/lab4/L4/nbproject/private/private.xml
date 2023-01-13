@@ -3,16 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Harry/Desktop/KTH/ID1212-Project-and-Labs/labs/lab4/L4/web/view.jsp</file>
-            <file>file:/C:/Users/Harry/Desktop/KTH/ID1212-Project-and-Labs/labs/lab4/L4/src/java/LoginServlet.java</file>
-            <file>file:/C:/Users/Harry/Desktop/KTH/ID1212-Project-and-Labs/labs/lab4/L4/build.xml</file>
-            <file>file:/C:/Users/Harry/Desktop/KTH/ID1212-Project-and-Labs/labs/lab4/L4/src/java/L41/NewServlet.java</file>
-            <file>file:/C:/Users/Harry/Desktop/KTH/ID1212-Project-and-Labs/labs/lab4/L4/src/java/L42/GuessServlet.java</file>
-            <file>file:/C:/Users/Harry/Desktop/KTH/ID1212-Project-and-Labs/labs/lab4/L4/web/index.html</file>
-            <file>file:/C:/Users/Harry/Desktop/KTH/ID1212-Project-and-Labs/labs/lab4/L4/src/java/GuessingServlet.java</file>
-            <file>file:/C:/Users/Harry/Desktop/KTH/ID1212-Project-and-Labs/labs/lab4/L4/web/WEB-INF/web.xml</file>
-            <file>file:/C:/Users/Harry/Desktop/KTH/ID1212-Project-and-Labs/labs/lab4/L4/src/java/L41/Model.java</file>
-            <file>file:/C:/Users/Harry/Desktop/KTH/ID1212-Project-and-Labs/labs/lab4/L4/web/login.jsp</file>
+            <file>file:/C:/Users/Harry/Desktop/ID1212-Project-and-Labs/labs/lab4/L4/src/java/L42/GuessServlet.java</file>
+            <file>file:/C:/Users/Harry/Desktop/ID1212-Project-and-Labs/labs/lab4/L4/web/index.html</file>
+            <file>file:/C:/Users/Harry/Desktop/ID1212-Project-and-Labs/labs/lab4/L4/src/java/QuizServlet.java</file>
+            <file>file:/C:/Users/Harry/Desktop/ID1212-Project-and-Labs/labs/lab4/L4/src/java/GuessingServlet.java</file>
+            <file>file:/C:/Users/Harry/Desktop/ID1212-Project-and-Labs/labs/lab4/L4/web/view.jsp</file>
+            <file>file:/C:/Users/Harry/Desktop/ID1212-Project-and-Labs/labs/lab4/L4/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/Harry/Desktop/ID1212-Project-and-Labs/labs/lab4/L4/src/java/LoginServlet.java</file>
+            <file>file:/C:/Users/Harry/Desktop/ID1212-Project-and-Labs/labs/lab4/L4/web/login.jsp</file>
+            <file>file:/C:/Users/Harry/Desktop/ID1212-Project-and-Labs/labs/lab4/L4/web/chooseQuiz.jsp</file>
+            <file>file:/C:/Users/Harry/Desktop/ID1212-Project-and-Labs/labs/lab4/L4/web/META-INF/context.xml</file>
+            <file>file:/C:/Users/Harry/Desktop/ID1212-Project-and-Labs/labs/lab4/L4/web/quiz.jsp</file>
         </group>
     </open-files>
 </project-private>
