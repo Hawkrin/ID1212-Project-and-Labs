@@ -48,6 +48,12 @@ const findAllPost = () => {
     })
 }
 
+/**
+ * Finds a specified posts
+ * 
+ * @param {Integer} id 
+ * @returns {Promise}
+ */
 const findPost = (id) => {
     return new Promise((resolve, reject) => {
         Post.findOne({_id: id})
@@ -65,6 +71,13 @@ const findPost = (id) => {
     })
 } 
 
+/**
+ * Deletes the specified post from a specified user.
+ * 
+ * @param {Integer} id 
+ * @param {Integer} user_id 
+ * @returns {Promise}
+ */
 const deletePost = (id, user_id) => {
     return new Promise((resolve, reject) => {
         Post.findOne({ $and: [{ _id: id}, {user: user_id}]})
@@ -74,7 +87,7 @@ const deletePost = (id, user_id) => {
                     .then((post) => { return resolve(post); })
                     .catch((error) => { return reject(error); }) 
             })
-   })
+    })
 }
 
 module.exports = { createPost, findAllPost, findPost, deletePost};

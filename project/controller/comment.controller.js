@@ -3,6 +3,14 @@ const _ = require("lodash");
 const Comment = require("../model/comment.model");
 const Post = require("../model/posts.model");
 
+/**
+ * Adds a comment to a post.
+ * 
+ * @param {Integer} id 
+ * @param {String} body 
+ * @param {Integer} user 
+ * @returns {Promise}
+ */
 const addComment = (id, body, user) => {
     return new Promise((resolve, reject) => {
         Post.findById(id)
