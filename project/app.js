@@ -32,6 +32,7 @@ app.use(flash());
 app.use("/auth", require("./routes/auth.routes"));
 app.use("",  require("./routes/home.routes"));
 app.use("/posts",  require("./routes/posts.routes"));
+app.use("/comment", require("./routes/comment.routes"));
 app.use("",  require("./routes/account.routes"));
 app.use("",  require("./routes/about.routes"));
 

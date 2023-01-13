@@ -49,9 +49,18 @@ const findAllPost = () => {
 
 const findPost = (id) => {
     return new Promise((resolve, reject) => {
-        Post.findById(id)
+        Post.findOne({_id: id})
+            .populate("user")
+            .populate("comments")
+            .populate({
+                path: "comments",
+                populate: {
+                    path: "user",
+                    model: "user"
+                }
+            })
             .then((post) => { return resolve(post); })
-            .catch((error) => { return reject(error); })
+            .catch((error) => { console.log(error); return reject(error); })
     })
 } 
 

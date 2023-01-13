@@ -10,16 +10,19 @@
         <%- include('./partials/navbar.ejs') %>
 
         <div id="createCommentBox">
-            <div id="commentTextArea">
-                <textarea 
-                    id="commentTextArea"
-                    placeholder="Write a comment"
-                    maxlength="100"></textarea>
-            </div>
-            <div id="commentCreateButton" >
-                <button id="commentCreateButton" >Create</button>
-            </div>
-        </div>
+            <form method="post" action="/comment/add/<%= post._id %> ">
+                <div id="commentTextArea">
+                    <input 
+                        id="body"
+                        name="body"
+                        placeholder="Write a comment"
+                        />
+                </div>
+                <div id="commentCreateButton" >
+                    <button type="submit" id="commentCreateButton" >Create</button>
+                </div> 
+            </form>
+       </div>
         <div id="postSummaryBox">
             <div id="postContent">
                 <div id="postSummaryTitle">
@@ -38,7 +41,9 @@
                     <h5><%= post.date.toString().split('G')[0] %></h5>
                 </div>
                 <div id="deleteButtonContainer">
-                    <button><a method="POST" id="deletePostButton"  href="/posts/forumPage" >Delete post</a></button>
+                    <form method="post" action="/posts/post/delete/<%= post._id %>">
+                        <button type="submit">Delete</button>
+                    </form>
                 </div>
             </div>   
         </div>

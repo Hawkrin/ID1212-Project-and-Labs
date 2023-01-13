@@ -14,15 +14,12 @@ router
     //Forum page
     .get("/forumpage", authenticated, (req, res, next) => {
         PostController.findAllPost()
-            // .populate('user', )
             .then((posts) => {
-
                 res.render('forumpage', {
                     posts
                 })
             })
             .catch((error) => {
-                console.log(error);
                 res.render('forumpage', {
                     error: req.flash("error", error)
                 })
@@ -39,11 +36,9 @@ router
 
         PostController.createPost(title, description, body, req.user)
             .then((result) => {
-                console.log(result);
                 return res.redirect(fullUrl(req));
             })
             .catch((error) => {
-                console.log(error);
                 return res.redirect(fullUrl(req));
             })
     })
@@ -61,16 +56,18 @@ router
     })
 
     //Deleting posts
-    .post("/post/:id", authenticated, (req, res, next) => {
+    .post("/post/delete/:id", authenticated, (req, res, next) => {
         const {id} = _.pick(req.params, ["id"]);
         const {_id} = _.pick(req.user, ["_id"]);
 
 
         PostController.deletePost(id, _id)
             .then((post) => {
-                return res.render("forumpage", {post})
+                console.log("Deleted");
+                return res.redirect("forumpage")
             })
             .catch((error) => {
+                console.log(error);
                 return res.render("forumpage", {error})
             })
     })

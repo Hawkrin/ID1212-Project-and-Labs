@@ -17,7 +17,14 @@ const addComment = (id, body, user) => {
 
                 newComment.save((error) => {
                     if (error) { return reject(error); }
-                    return resolve(newComment); 
+                    Post.findOneAndUpdate(
+                        {_id: id},
+                        {$push: { comments: newComment._id}},
+                        function(error, success) {
+                            if (error) { return reject(error); }
+                            resolve(newComment);
+                        } 
+                    )
                 })
             })
     })
