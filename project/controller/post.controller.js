@@ -55,12 +55,16 @@ const findPost = (id) => {
     })
 } 
 
-const deletePost = (id) => {
+const deletePost = (id, user_id) => {
     return new Promise((resolve, reject) => {
-        Post.findByIdAndDelete(id)
-            .then((post) => { return resolve(post)})
-            .catch((error) => { return reject(error)})
-    })
+        Post.findOne({ $and: [{ _id: id}, {user: user_id}]})
+            .then((post) => {
+                if (post == null) { return reject("Post not found"); }
+                Post.findByIdAndRemove(id)
+                    .then((post) => { return resolve(post); })
+                    .catch((error) => { return reject(error); }) 
+            })
+   })
 }
 
 module.exports = { createPost, findAllPost, findPost, deletePost};

@@ -61,10 +61,12 @@ router
     })
 
     //Deleting posts
-    .post("/post/:id", (req, res, next) => {
+    .post("/post/:id", authenticated, (req, res, next) => {
         const {id} = _.pick(req.params, ["id"]);
+        const {_id} = _.pick(req.user, ["_id"]);
 
-        PostController.deletePost(id)
+
+        PostController.deletePost(id, _id)
             .then((post) => {
                 return res.render("forumpage", {post})
             })
