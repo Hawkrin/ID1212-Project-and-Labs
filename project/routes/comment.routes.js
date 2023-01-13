@@ -20,7 +20,7 @@ router
                 res.redirect("/posts/post/" + id);
             })
             .catch((error) => {
-                res.redirect("/posts/post" + id);
+                res.redirect("/posts/post/" + id);
             })
     })
 

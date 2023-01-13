@@ -9,20 +9,6 @@
 
         <%- include('./partials/navbar.ejs') %>
 
-        <div id="createCommentBox">
-            <form method="post" action="/comment/add/<%= post._id %> ">
-                <div id="commentTextArea">
-                    <input 
-                        id="body"
-                        name="body"
-                        placeholder="Write a comment"
-                        />
-                </div>
-                <div id="commentCreateButton" >
-                    <button type="submit" id="commentCreateButton" >Create</button>
-                </div> 
-            </form>
-       </div>
         <div id="postSummaryBox">
             <div id="postContent">
                 <div id="postSummaryTitle">
@@ -39,33 +25,52 @@
                 <br>
                 <div id="postSummaryDate">
                     <h5><%= post.date.toString().split('G')[0] %></h5>
+                    <p id="writtenBy">Written by: <%= post.user.username %></p>
                 </div>
                 <div id="deleteButtonContainer">
                     <form method="post" action="/posts/post/delete/<%= post._id %>">
                         <button type="submit">Delete</button>
                     </form>
                 </div>
+                <div id="hline"></div>
+                <div id="commentBox">
+                    <form method="post" action="/comment/add/<%= post._id %> ">
+                        <label id="commentTextArea">
+                            <textarea
+                                id="body"
+                                name="body"
+                                placeholder="Write a comment"
+                                >
+                            </textarea> 
+                        </label>
+                        <div id="commentCreateButton" >
+                            <button type="submit" id="commentCreateButton">Create</button>
+                        </div> 
+                    </form>
+                </div>
             </div>   
         </div>
         <div id="postCommentLayoutContainer">
-        <div id="postCommentLayout">
-            <div id="postCommentsBox">
-                <div id="postCommentsBody">
-                    <div id="commentBody">
-                        <p>HEJ PÅ DIG LILLA HARRY</p>
+            <% post.comments.map((comment, i) => { %>
+                <div id="postCommentLayout">
+                    <div id="postCommentsBox">
+                        <div id="postCommentsBody">
+                            <div id="commentBody">
+                                <h3><%= comment.body %> </h3>
+                            </div>
+                            <div id="commentFooter">
+                                <div id="commentDate">
+                                    <%= comment.date.toString().split('G')[0] %>
+                                </div>
+                                <div id="commentWriter">
+                                    <%= comment.user.username %>
+                                </div>
+                            </div> 
+                        </div>
                     </div>
-                    <div id="commentFooter">
-                        <div id="commentWriter">
-                            <p>Malcolm</p>
-                        </div>
-                        <div id="commentDate">
-                            <p>Thu Jan 05 2023 18:58:04 </p>
-                        </div>
-                    </div> 
                 </div>
-            </div>
+            <% }) %> 
         </div>
-    </div>
     </body>
     <style>
         #postSummaryBox{
@@ -77,7 +82,7 @@
         }
         #postContent{
             padding-top: 30px;
-            height: 500px;
+            height: 700px;
             width: 700px;
             display: flex; 
             flex-direction: column;
@@ -87,27 +92,15 @@
             box-shadow: 5px 20px 50px #000;
             font-family: "Papyrus", Fantasy;
         }
-        #deleteButtonContainer {
-            display: flex;
-            justify-content: flex-end;
-            padding-left: 450px;
-        }
         #deletePostButton {
             text-decoration: none; 
             color:black;
         }
-        #createCommentBox {
-            height: 150px;
-            width: 500px;
-            background: f2f2f2;
-            border-radius: 10px;
-            box-shadow: 5px 20px 50px #000;
+        #commentBox {
+            padding-top: 20px;
             display: flex;
-            align-items: center;
+            flex-direction: row;
             justify-content: center;
-            flex-direction: column;
-            gap: 5px;
-            position: fixed;
         }
         #commentTextArea {
             font-size: larger;
@@ -122,42 +115,44 @@
         #commentCreateButton:hover {
             cursor: pointer;
         }
-        #postCommentLayoutContainer {
+        #postCommentLayout:nth-child(n) {
+            padding-right: 430px;
             display: flex;
-            justify-content: center;
+            justify-content: flex-end;
         }
-        #postCommentLayout {
-            /* display: grid;
-            grid-gap: 5rem;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 2fr)); */
-            display: grid;
+        #postCommentLayout:nth-child(2n) {
+            padding-left: 430px;
+            display: flex;
+            justify-content: flex-start;
         }
         #postCommentsBox {
             height: 150px;
             width: 500px;
-            background: f2f2f2;
+            background-color: rgb(197, 194, 194);  
             border-radius: 10px;
             box-shadow: 5px 20px 50px #000;
-        }
-        /* #postCommentLayout:nth-child(n) {
-            background-color: red;
-        }
-        #postCommentLayout:nth-child(3n) {
-            background-color: blue; 
-        }
-        #postCommentLayout:nth-child(2n) {
-            background-color: pink; 
-        }    */
-        #postCommentsBody {
-            display: flex;
-            flex-direction: column;
-            align-items: center; 
-            justify-content: center;
-            font-size: smaller;
-        }
+            overflow-y: auto;
+        }  
         #commentFooter {
+            padding-top: 60px;
+            padding-left: 10px;
+            padding-right: 10px;
             display: flex;
             justify-content: space-between;
+        }
+        #body {
+            border-radius: 5px;
+            height: 80px;
+            width: 300px; 
+            resize: none;  
+        }
+        #hline {
+            width:100%; 
+            height:1px; 
+            background: rgb(0, 0, 0) 
+        }
+        #postSummaryBody {
+            overflow-y: scroll;
         }
     </style>
 </html>

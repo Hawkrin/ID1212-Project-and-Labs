@@ -38,6 +38,7 @@ const createPost = (title, description, body, user) => {
 const findAllPost = () => {
     return new Promise((resolve, reject) => {
         Post.find()
+            .populate("user")
             .then((posts) => {
                 return resolve(posts);
             })
