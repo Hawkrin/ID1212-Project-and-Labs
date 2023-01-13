@@ -6,7 +6,6 @@ const PostController = require("../controller/post.controller");
 
 const authenticated = require("../middleware/auth.middleware");
 const { fullUrl } = require("../util/url");
-const { reset } = require("nodemon");
 
 const router = Router();
 
