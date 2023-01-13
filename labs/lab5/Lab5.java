@@ -95,9 +95,9 @@ public class Lab5 {
     String recievingHost = "webmail.kth.se";
     int recievingPort = 993;
 
-    fetchEmails(recievingHost, recievingPort);
+    //fetchEmails(recievingHost, recievingPort);
 
-    //sendEmails(to, from, sendingHost, sendingPort);
+    sendEmails(to, from, sendingHost, sendingPort);
   }
 
 
