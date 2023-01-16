@@ -13,7 +13,7 @@
         <span id="headerTitle">Discussion Forum</span>
     </div>
     <div id="leftHeaderContainer">
-        <form action="/auth/logout">
+        <form id="logoutButtonBox" action="/auth/logout">
             <button id="logoutButton" type="submit">Sign Out</button>
         </form>
     </div>   
@@ -65,9 +65,16 @@
         font-size: x-large;
         font-weight: normal; 
     }
-    #leftHeaderContainer {
-        display: flex;
-        justify-content: flex-end;
+    #logoutButtonBox {
+        margin: 0 auto;
+        padding: 0; 
+    }
+    #logoutButton {
+        display: block;
+        padding: 8px 15px;
+        text-decoration: none;
+        font-weight: bold;
+        color: #069;
     }
     #logoutButton:hover {
         cursor: pointer;

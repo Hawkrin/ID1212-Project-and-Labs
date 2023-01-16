@@ -27,7 +27,6 @@
                     <h5><%= post.date.toString().split('G')[0] %></h5>
                     <p id="writtenBy">Written by: <%= post.user.username %></p>
                 </div>
-                <% console.log(user + " " + post.user._id)%>
                 <% if(user.equals(post.user._id)) { %>
                 <div id="deleteButtonContainer">
                     <form method="post" action="/posts/post/delete/<%= post._id %>">
