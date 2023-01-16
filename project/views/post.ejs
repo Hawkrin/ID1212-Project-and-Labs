@@ -28,7 +28,7 @@
                     <p id="writtenBy">Written by: <%= post.user.username %></p>
                 </div>
                 <% console.log(user + " " + post.user._id)%>
-                <% if(user == post.user._id) { %>
+                <% if(user.equals(post.user._id)) { %>
                 <div id="deleteButtonContainer">
                     <form method="post" action="/posts/post/delete/<%= post._id %>">
                         <button type="submit">Delete</button>

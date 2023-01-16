@@ -23,7 +23,14 @@ const createPost = (title, description, body, user) => {
 
         newPost.save((error) => {
             if (error) { return reject(error);}
-            return resolve(newPost);
+            User.findOneAndUpdate(
+                {_id: user},
+                {$push: { posts: newPost._id}},
+                function(error, success) {
+                    if (error) { return reject(error); }
+                    return resolve(newPost);
+                }
+            )
         })
     })
 }

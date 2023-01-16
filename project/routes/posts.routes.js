@@ -36,7 +36,7 @@ router
 
         PostController.createPost(title, description, body, req.user)
             .then((result) => {
-                return res.redirect(fullUrl(req));
+                return res.redirect("/posts/forumpage");
             })
             .catch((error) => {
                 return res.redirect(fullUrl(req));
