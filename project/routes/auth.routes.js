@@ -55,7 +55,9 @@ router
     })
 
     //Logout routes
-    .post("/logout", (req, res, next) => {})
+    .get("/logout", (req, res, next) => {
+        return res.cookie("Authenticate", null).redirect("/");
+    })
 
     //Register routes
     .get("/register", (req, res) => {
