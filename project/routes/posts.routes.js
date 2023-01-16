@@ -63,8 +63,7 @@ router
 
         PostController.deletePost(id, _id)
             .then((post) => {
-                console.log("Deleted");
-                return res.redirect("forumpage")
+                return res.redirect("/posts/forumpage");
             })
             .catch((error) => {
                 console.log(error);
