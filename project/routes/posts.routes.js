@@ -48,7 +48,7 @@ router
 
         PostController.findPost(id)
             .then((post) => {
-                return res.render("post", {post});
+                return res.render("post", {post, user: req.user._id});
             })
             .catch((error) => {
                 return res.render("forumpage", {error});
